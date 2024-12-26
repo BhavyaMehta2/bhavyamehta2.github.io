@@ -29,8 +29,6 @@
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
-  <script src="https://3dmol.csb.pitt.edu/build/3Dmol-min.js"></script>
-
 </head>
 
 <body class="index-page">
@@ -41,9 +39,13 @@
       <div class="container d-flex justify-content-center justify-content-md-between">
         <div class="contact-info d-flex align-items-center">
           <i class="bi bi-envelope d-flex align-items-center"><a
-              href="mailto:contact@example.com">info@plastichem.in</a></i>
-          <i class="bi bi-phone d-flex align-items-center ms-4"><span>+91 9223432786</span></i>
+              href="mailto:info@plastichem.in">info@plastichem.in</a></i>
+          <i class="bi bi-phone d-flex align-items-center ms-4"><a href="https://wa.me/+919223432786">+91
+              9223432786</a></i>
         </div>
+        <!-- <div class="social-links d-none d-md-flex align-items-center">
+          <a href="https://wa.me/+919223432786" class="whatsapp"><i class="bi bi-whatsapp"></i></a>
+        </div> -->
       </div>
     </div><!-- End Top Bar -->
 
@@ -53,13 +55,14 @@
         <a href="index.html" class="logo d-flex align-items-center">
           <!-- Uncomment the line below if you also wish to use an image logo -->
           <img src="assets/img/logo.png" alt="">
-          <h1 class="sitename" style="color:red;">Plastichem Indl Corpn</h1>
+          <h1 class="sitename" style="color:#f70f10;">Plastichem Indl Corpn</h1>
         </a>
 
         <nav id="navmenu" class="navmenu">
           <ul>
             <li><a href="#hero" class="active">Home</a></li>
             <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
             <li><a href="#products">Products</a></li>
             <!-- <li class="dropdown"><a href="#"><span>Dropdown</span> <i
                   class="bi bi-chevron-down toggle-dropdown"></i></a>
@@ -99,7 +102,7 @@
       <div class="container">
         <div class="row gy-4">
           <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center" data-aos="zoom-out">
-            <h1>Welcome to <span style="color:red;">Plastichem</span></h1>
+            <h1>Welcome to <span style="color:#f70f10;">Plastichem</span></h1>
             <p>For over a decade, we have been a trusted trader and importer of high-quality
               chemicals and solvents to various industries. We are also a proud distributor of <b
                 style="color:rgb(106, 153, 85);">The Andhra
@@ -126,7 +129,7 @@
 
           <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
             <div class="service-item position-relative">
-              <div class="icon"><i class="bi bi-activity icon"></i></div>
+              <div class="icon"><i class="bi bi-graph-up-arrow icon"></i></div>
               <h4><a class="stretched-link">Growth Through Customer Satisfaction</a></h4>
               <p>Our focus on meeting global client demands has enabled us to reach key milestones, cementing our
                 position as an industry
@@ -136,6 +139,16 @@
 
           <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="200">
             <div class="service-item position-relative">
+              <div class="icon"><i class="bi bi-broadcast icon"></i></div>
+              <h4><a class="stretched-link">Commitment to Quality</a></h4>
+              <p>We partner with reliable vendors to ensure consistent delivery of superior products, establishing
+                ourselves as a
+                dependable supplier in the market.</p>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="300">
+            <div class="service-item position-relative">
               <div class="icon"><i class="bi bi-bounding-box-circles icon"></i></div>
               <h4><a class="stretched-link">Guided by Our Core Values</a></h4>
               <p>Honesty, transparency, ethical practices, and quality have been the cornerstones of our success,
@@ -144,22 +157,12 @@
             </div>
           </div><!-- End Service Item -->
 
-          <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="300">
+          <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="400">
             <div class="service-item position-relative">
               <div class="icon"><i class="bi bi-calendar4-week icon"></i></div>
               <h4><a class="stretched-link">Market Leader Since 2001</a></h4>
               <p>Plastichem Indl Corpn has been a trusted name in trading high-quality products catering to
                 diverse industries worldwide.</p>
-            </div>
-          </div><!-- End Service Item -->
-
-          <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="400">
-            <div class="service-item position-relative">
-              <div class="icon"><i class="bi bi-broadcast icon"></i></div>
-              <h4><a class="stretched-link">Commitment to Quality</a></h4>
-              <p>We partner with reliable vendors to ensure consistent delivery of superior products, establishing
-                ourselves as a
-                dependable supplier in the market.</p>
             </div>
           </div><!-- End Service Item -->
 
@@ -200,7 +203,7 @@
               </p>
               <ul>
                 <li>
-                  <i class="bi bi-diagram-3"></i>
+                  <i class="bi bi-patch-check"></i>
                   <div>
                     <h4>Uncompromising Quality Standards</h4>
                     <p>We work exclusively with trusted and reputable vendors, ensuring that every product we supply
@@ -209,7 +212,7 @@
                   </div>
                 </li>
                 <li>
-                  <i class="bi bi-fullscreen-exit"></i>
+                  <i class="bi bi-x-diamond"></i>
                   <div>
                     <h4>Core Values Driving Success</h4>
                     <p>Our unwavering dedication to honesty, transparency, ethical practices, and excellence has been
@@ -282,45 +285,51 @@
     </section><!-- /Stats Section -->
 
     <!-- Clients Section -->
-    <section id="clients" class="clients section light-background">
+    <!-- <section id="clients" class="clients section light-background">
 
       <div class="container">
 
         <div class="swiper init-swiper">
           <script type="application/json" class="swiper-config">
-            {
-              "loop": true,
-              "speed": 600,
-              "autoplay": {
-                "delay": 5000
-              },
-              "slidesPerView": "auto",
-              "pagination": {
-                "el": ".swiper-pagination",
-                "type": "bullets",
-                "clickable": true
-              },
-              "breakpoints": {
-                "320": {
-                  "slidesPerView": 2,
-                  "spaceBetween": 40
-                },
-                "480": {
-                  "slidesPerView": 3,
-                  "spaceBetween": 60
-                },
-                "640": {
-                  "slidesPerView": 4,
-                  "spaceBetween": 80
-                },
-                "992": {
-                  "slidesPerView": 6,
-                  "spaceBetween": 120
+                {
+                  "loop": true,
+                  "speed": 600,
+                  "autoplay": {
+                    "delay": 5000
+                  },
+                  "slidesPerView": "auto",
+                  "pagination": {
+                    "el": ".swiper-pagination",
+                    "type": "bullets",
+                    "clickable": true
+                  },
+                  "breakpoints": {
+                    "320": {
+                      "slidesPerView": 2,
+                      "spaceBetween": 40
+                    },
+                    "480": {
+                      "slidesPerView": 3,
+                      "spaceBetween": 60
+                    },
+                    "640": {
+                      "slidesPerView": 4,
+                      "spaceBetween": 80
+                    },
+                    "992": {
+                      "slidesPerView": 6,
+                      "spaceBetween": 120
+                    }
+                  }
                 }
-              }
-            }
-          </script>
+              </script>
           <div class="swiper-wrapper align-items-center">
+            <div class="swiper-slide"><img src="assets/img/clients/client-1.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/clients/client-2.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/clients/client-3.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/clients/client-1.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/clients/client-2.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/clients/client-3.png" class="img-fluid" alt=""></div>
             <div class="swiper-slide"><img src="assets/img/clients/client-1.png" class="img-fluid" alt=""></div>
             <div class="swiper-slide"><img src="assets/img/clients/client-2.png" class="img-fluid" alt=""></div>
             <div class="swiper-slide"><img src="assets/img/clients/client-3.png" class="img-fluid" alt=""></div>
@@ -329,7 +338,110 @@
 
       </div>
 
-    </section><!-- /Clients Section -->
+    </section>/Client Section -->
+
+    <!-- Services Section -->
+    <section id="services" class="services section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Services</h2>
+        <p><span>Check Our</span> <span class="description-title">Services</span></p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="service-item position-relative">
+              <div class="icon">
+                <i class="bi bi-activity"></i>
+              </div>
+              <a href="#" class="stretched-link">
+                <h3>Nesciunt Mete</h3>
+              </a>
+              <p>Provident nihil minus qui consequatur non omnis maiores. Eos accusantium minus dolores iure perferendis
+                tempore et consequatur.</p>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="service-item position-relative">
+              <div class="icon">
+                <i class="bi bi-broadcast"></i>
+              </div>
+              <a href="#" class="stretched-link">
+                <h3>Eosle Commodi</h3>
+              </a>
+              <p>Ut autem aut autem non a. Sint sint sit facilis nam iusto sint. Libero corrupti neque eum hic non ut
+                nesciunt dolorem.</p>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="service-item position-relative">
+              <div class="icon">
+                <i class="bi bi-easel"></i>
+              </div>
+              <a href="#" class="stretched-link">
+                <h3>Ledo Markt</h3>
+              </a>
+              <p>Ut excepturi voluptatem nisi sed. Quidem fuga consequatur. Minus ea aut. Vel qui id voluptas adipisci
+                eos
+                earum corrupti.</p>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+            <div class="service-item position-relative">
+              <div class="icon">
+                <i class="bi bi-bounding-box-circles"></i>
+              </div>
+              <a href="#" class="stretched-link">
+                <h3>Asperiores Commodit</h3>
+              </a>
+              <p>Non et temporibus minus omnis sed dolor esse consequatur. Cupiditate sed error ea fuga sit provident
+                adipisci neque.</p>
+              <a href="#" class="stretched-link"></a>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+            <div class="service-item position-relative">
+              <div class="icon">
+                <i class="bi bi-calendar4-week"></i>
+              </div>
+              <a href="#" class="stretched-link">
+                <h3>Velit Doloremque</h3>
+              </a>
+              <p>Cumque et suscipit saepe. Est maiores autem enim facilis ut aut ipsam corporis aut. Sed animi at autem
+                alias eius labore.</p>
+              <a href="#" class="stretched-link"></a>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+            <div class="service-item position-relative">
+              <div class="icon">
+                <i class="bi bi-chat-square-text"></i>
+              </div>
+              <a href="#" class="stretched-link">
+                <h3>Dolori Architecto</h3>
+              </a>
+              <p>Hic molestias ea quibusdam eos. Fugiat enim doloremque aut neque non et debitis iure. Corrupti
+                recusandae
+                ducimus enim.</p>
+              <a href="#" class="stretched-link"></a>
+            </div>
+          </div><!-- End Service Item -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Services Section -->
+
 
     <!-- Portfolio Section -->
     <section id="products" class="portfolio section">
@@ -345,47 +457,43 @@
         <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
 
           <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
-            <li data-filter="*" class="filter-active">All</li>
-            <li data-filter=".filter-alcohol">Alcohols</li>
-            <li data-filter=".filter-glycol">Glycols</li>
-            <li data-filter=".filter-ester">Esters</li>
-            <li data-filter=".filter-ketone">Ketones</li>
-            <li data-filter=".filter-hydrocarbon">Hydrocarbons</li>
-            <li data-filter=".filter-other">Others</li>
+            <li data-filter="*" class="filter-active filter-all">All</li>
+            <li data-filter=".filter-alcohol" class="filter-alcohol">Alcohols</li>
+            <li data-filter=".filter-glycol" class="filter-glycol">Glycols</li>
+            <li data-filter=".filter-ester" class="filter-ester">Esters</li>
+            <li data-filter=".filter-ketone" class="filter-ketone">Ketones</li>
+            <li data-filter=".filter-hydrocarbon" class="filter-hydrocarbon">Hydrocarbons</li>
+            <li data-filter=".filter-other" class="filter-other">Others</li>
           </ul><!-- End Portfolio Filters -->
 
           <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
 
-            <a href="portfolio-details.html" id="_2EthylHexanol"
-              class="col-lg-4 col-md-6 portfolio-item isotope-item filter-alcohol">
-              <div class="viewer" background: #f4f4f4;></div>
+            <a href="portfolio-details.html" class="col-lg-4 col-md-6 portfolio-item isotope-item filter-alcohol">
+              <img src="assets/img/product-portfolio/2eh.png" class="img-fluid alcohol" alt="">
               <div class="portfolio-info">
                 <h4>2-Ethyl Hexanol</h4>
                 <p>CH<sub>3</sub>CH<sub>2</sub>CH(CH<sub>2</sub>CH<sub>3</sub>)CH<sub>2</sub>CH<sub>2</sub>OH</p>
               </div>
-            </a>
+            </a><!-- End Portfolio Item -->
 
-            <a href="portfolio-details.html" id="nButanol"
-              class="col-lg-4 col-md-6 portfolio-item isotope-item filter-alcohol">
-              <div class="viewer" background: #f4f4f4;></div>
+            <a href="portfolio-details.html" class="col-lg-4 col-md-6 portfolio-item isotope-item filter-alcohol">
+              <img src="assets/img/product-portfolio/nbutanol.png" class="img-fluid alcohol" alt="">
               <div class="portfolio-info">
                 <h4>N-Butanol</h4>
                 <p>CH<sub>3</sub>(CH<sub>2</sub>)<sub>3</sub>OH</p>
               </div>
             </a>
 
-            <a href="portfolio-details.html" id="nButanol"
-              class="col-lg-4 col-md-6 portfolio-item isotope-item filter-alcohol">
-              <div class="viewer" background: #f4f4f4;></div>
+            <a href="portfolio-details.html" class="col-lg-4 col-md-6 portfolio-item isotope-item filter-alcohol">
+              <img src="assets/img/product-portfolio/isobutanol.png" class="img-fluid alcohol" alt="">
               <div class="portfolio-info">
                 <h4>Isobutanol</h4>
                 <p>(CH<sub>3</sub>)<sub>2</sub>CHCH<sub>2</sub>OH</p>
               </div>
             </a>
 
-            <a href="portfolio-details.html" id="nButanol"
-              class="col-lg-4 col-md-6 portfolio-item isotope-item filter-ester">
-              <div class="viewer" background: #f4f4f4;></div>
+            <a href="portfolio-details.html" class="col-lg-4 col-md-6 portfolio-item isotope-item filter-ester">
+              <img src="assets/img/product-portfolio/2eh.png" class="img-fluid ester" alt="">
               <div class="portfolio-info">
                 <h4>N-Butyl Acetate</h4>
                 <p>CH<sub>3</sub>COOCH<sub>2</sub>CH<sub>2</sub>CH<sub>2</sub>CH<sub>3</sub></p>
@@ -394,7 +502,7 @@
 
             <a href="portfolio-details.html" id="nButanol"
               class="col-lg-4 col-md-6 portfolio-item isotope-item filter-ester">
-              <div class="viewer" background: #f4f4f4;></div>
+              <img src="assets/img/product-portfolio/2eh.png" class="img-fluid ester" alt="">
               <div class="portfolio-info">
                 <h4>Isobutyl Acetate</h4>
                 <p>CH<sub>3</sub>COOCH<sub>2</sub>CH(CH<sub>3</sub>)<sub>2</sub></p>
@@ -403,7 +511,7 @@
 
             <a href="portfolio-details.html" id="nButanol"
               class="col-lg-4 col-md-6 portfolio-item isotope-item filter-hydrocarbon">
-              <div class="viewer" background: #f4f4f4;></div>
+              <img src="assets/img/product-portfolio/2eh.png" class="img-fluid hydrocarbon" alt="">
               <div class="portfolio-info">
                 <h4>Xylene</h4>
                 <p>C<sub>6</sub>H<sub>4</sub>(CH<sub>3</sub>)<sub>2</sub></p>
@@ -412,7 +520,7 @@
 
             <a href="portfolio-details.html" id="nButanol"
               class="col-lg-4 col-md-6 portfolio-item isotope-item filter-glycol">
-              <div class="viewer" background: #f4f4f4;></div>
+              <img src="assets/img/product-portfolio/2eh.png" class="img-fluid glycol" alt="">
               <div class="portfolio-info">
                 <h4>Propylene Glycol</h4>
                 <p>CH<sub>3</sub>CHOHCH<sub>2</sub>OH</p>
@@ -421,7 +529,7 @@
 
             <a href="portfolio-details.html" id="nButanol"
               class="col-lg-4 col-md-6 portfolio-item isotope-item filter-ester">
-              <div class="viewer" background: #f4f4f4;></div>
+              <img src="assets/img/product-portfolio/2eh.png" class="img-fluid ester" alt="">
               <div class="portfolio-info">
                 <h4>Isopropyl Acetate</h4>
                 <p>CH<sub>3</sub>COOCH(CH<sub>3</sub>)<sub>2</sub></p>
@@ -430,7 +538,7 @@
 
             <a href="portfolio-details.html" id="nButanol"
               class="col-lg-4 col-md-6 portfolio-item isotope-item filter-hydrocarbon">
-              <div class="viewer" background: #f4f4f4;></div>
+              <img src="assets/img/product-portfolio/2eh.png" class="img-fluid hydrocarbon" alt="">
               <div class="portfolio-info">
                 <h4>Toluene</h4>
                 <p>C<sub>6</sub>H<sub>5</sub>CH<sub>3</sub></p>
@@ -439,7 +547,7 @@
 
             <a href="portfolio-details.html" id="nButanol"
               class="col-lg-4 col-md-6 portfolio-item isotope-item filter-alcohol">
-              <div class="viewer" background: #f4f4f4;></div>
+              <img src="assets/img/product-portfolio/2eh.png" class="img-fluid alcohol" alt="">
               <div class="portfolio-info">
                 <h4>N-Propanol</h4>
                 <p>CH<sub>3</sub>CH<sub>2</sub>CH<sub>2</sub>OH</p>
@@ -448,7 +556,7 @@
 
             <a href="portfolio-details.html" id="nButanol"
               class="col-lg-4 col-md-6 portfolio-item isotope-item filter-alcohol">
-              <div class="viewer" background: #f4f4f4;></div>
+              <img src="assets/img/product-portfolio/2eh.png" class="img-fluid alcohol" alt="">
               <div class="portfolio-info">
                 <h4>Isopropanol</h4>
                 <p>CH<sub>3</sub>CHOHCH<sub>3</sub></p>
@@ -457,7 +565,7 @@
 
             <a href="portfolio-details.html" id="nButanol"
               class="col-lg-4 col-md-6 portfolio-item isotope-item filter-glycol">
-              <div class="viewer" background: #f4f4f4;></div>
+              <img src="assets/img/product-portfolio/2eh.png" class="img-fluid glycol" alt="">
               <div class="portfolio-info">
                 <h4>Mono Ethylene Glycol</h4>
                 <p>HOCH<sub>2</sub>CH<sub>2</sub>OH</p>
@@ -466,7 +574,7 @@
 
             <a href="portfolio-details.html" id="nButanol"
               class="col-lg-4 col-md-6 portfolio-item isotope-item filter-glycol">
-              <div class="viewer" background: #f4f4f4;></div>
+              <img src="assets/img/product-portfolio/2eh.png" class="img-fluid glycol" alt="">
               <div class="portfolio-info">
                 <h4>Butyl Glycol</h4>
                 <p>CH<sub>3</sub>(CH<sub>2</sub>)<sub>3</sub>CHOHCH<sub>3</sub></p>
@@ -475,7 +583,7 @@
 
             <a href="portfolio-details.html" id="nButanol"
               class="col-lg-4 col-md-6 portfolio-item isotope-item filter-hydrocarbon">
-              <div class="viewer" background: #f4f4f4;></div>
+              <img src="assets/img/product-portfolio/2eh.png" class="img-fluid hydrocarbon" alt="">
               <div class="portfolio-info">
                 <h4>Ortho-Xylene</h4>
                 <p>C<sub>6</sub>H<sub>4</sub>(CH<sub>3</sub>)<sub>2</sub></p>
@@ -484,7 +592,7 @@
 
             <a href="portfolio-details.html" id="nButanol"
               class="col-lg-4 col-md-6 portfolio-item isotope-item filter-other">
-              <div class="viewer" background: #f4f4f4;></div>
+              <img src="assets/img/product-portfolio/2eh.png" class="img-fluid other" alt="">
               <div class="portfolio-info">
                 <h4>Maleic Anhydride</h4>
                 <p>C<sub>4</sub>H<sub>2</sub>O<sub>3</sub></p>
@@ -493,7 +601,7 @@
 
             <a href="portfolio-details.html" id="nButanol"
               class="col-lg-4 col-md-6 portfolio-item isotope-item filter-ketone">
-              <div class="viewer" background: #f4f4f4;></div>
+              <img src="assets/img/product-portfolio/2eh.png" class="img-fluid ketone" alt="">
               <div class="portfolio-info">
                 <h4>Cyclohexanone</h4>
                 <p>C<sub>6</sub>H<sub>10</sub>O</p>
@@ -502,7 +610,7 @@
 
             <a href="portfolio-details.html" id="nButanol"
               class="col-lg-4 col-md-6 portfolio-item isotope-item filter-ketone">
-              <div class="viewer" background: #f4f4f4;></div>
+              <img src="assets/img/product-portfolio/2eh.png" class="img-fluid ketone" alt="">
               <div class="portfolio-info">
                 <h4>Methyl Isobutyl Ketone</h4>
                 <p>C<sub>6</sub>H<sub>12</sub>O</p>
@@ -566,7 +674,7 @@
           </div>
 
           <div class="col-lg-7">
-            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up"
+            <form action="forms/send-email.php" method="post" class="php-email-form" data-aos="fade-up"
               data-aos-delay="200">
               <div class="row gy-4">
 

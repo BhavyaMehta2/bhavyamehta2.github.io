@@ -1471,7 +1471,6 @@ section,
   position: relative;
   overflow: hidden;
   transition: all 0.3s ease-in-out;
-  width: fit-content;
 }
 
 .portfolio .portfolio-item .portfolio-info {

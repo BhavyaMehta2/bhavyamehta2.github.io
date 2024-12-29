@@ -1470,7 +1470,9 @@ section,
 .portfolio .portfolio-item {
   position: relative;
   overflow: hidden;
+
   transition: all 0.3s ease-in-out;
+  z-index: 1;
 }
 
 .portfolio .portfolio-item .portfolio-info {
@@ -1488,6 +1490,12 @@ section,
   font-weight: 600;
   padding-right: 50px;
 }
+
+.portfolio .portfolio-item .img-fluid {
+  box-shadow: 0px 0 15px 0 rgba(0, 0, 0, 0.2);
+  z-index: 3;
+}
+
 
 .portfolio .portfolio-item .portfolio-info p {
   color: color-mix(in srgb, var(--default-color), transparent 30%);

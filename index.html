@@ -697,6 +697,49 @@
             </form>
           </div><!-- End Contact Form -->
 
+          <script>
+            document.getElementById("contactForm").addEventListener("submit", async function (e) {
+              e.preventDefault();
+
+              // Show loading message
+              document.querySelector(".loading").style.display = "block";
+              document.querySelector(".error-message").style.display = "none";
+              document.querySelector(".sent-message").style.display = "none";
+
+              const formData = {
+                name: document.getElementById("name-field").value,
+                email: document.getElementById("email-field").value,
+                subject: document.getElementById("subject-field").value,
+                message: document.getElementById("message-field").value
+              };
+
+              try {
+                let response = await fetch("/api/google-sheet", {  // Use Vercel API route instead
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify(formData)
+                });
+
+                let result = await response.json();
+
+                // Hide loading and show success message
+                document.querySelector(".loading").style.display = "none";
+                document.querySelector(".sent-message").style.display = "block";
+
+                // Clear form fields
+                document.getElementById("contactForm").reset();
+              } catch (error) {
+                console.error("Error:", error);
+
+                // Hide loading and show error message
+                document.querySelector(".loading").style.display = "none";
+                document.querySelector(".error-message").textContent = "Failed to submit. Please try again.";
+                document.querySelector(".error-message").style.display = "block";
+              }
+            });
+
+          </script>
+
         </div>
 
       </div>

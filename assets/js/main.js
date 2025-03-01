@@ -129,6 +129,34 @@
     });
   }
 
+  function handleHashNavigation() {
+    if (window.location.hash && document.querySelector(window.location.hash)) {
+      setTimeout(() => {
+        let section = document.querySelector(window.location.hash);
+        let scrollMarginTop = parseInt(getComputedStyle(section).scrollMarginTop);
+        window.scrollTo({ top: section.offsetTop - scrollMarginTop, behavior: "smooth" });
+      }, 100);
+    }
+  }
+
+  function initNavMenuScrollspy() {
+    const navMenuLinks = document.querySelectorAll(".navmenu a");
+    function updateActiveLink() {
+      navMenuLinks.forEach(link => {
+        if (!link.hash) return;
+        const section = document.querySelector(link.hash);
+        if (!section) return;
+
+        const position = window.scrollY + 200;
+        const isActive = position >= section.offsetTop && position <= section.offsetTop + section.offsetHeight;
+        link.classList.toggle("active", isActive);
+      });
+    }
+
+    window.addEventListener("scroll", updateActiveLink);
+    updateActiveLink();
+  }
+
   async function loadProducts() {
     try {
       let response = await fetch("/api/google-sheet", {
@@ -140,7 +168,7 @@
 
       let apiData = await response.json();
       console.log("Loaded data from API:", apiData);
-      processProducts(apiData);
+      processProducts(apiData.data);
     } catch (error) {
       console.error("Error fetching data from API, loading from local JSON:", error);
 
@@ -286,33 +314,5 @@
         isotopeItem.querySelector(".isotope-container").isotope = isotopeInstance;
       });
     });
-  }
-
-  function handleHashNavigation() {
-    if (window.location.hash && document.querySelector(window.location.hash)) {
-      setTimeout(() => {
-        let section = document.querySelector(window.location.hash);
-        let scrollMarginTop = parseInt(getComputedStyle(section).scrollMarginTop);
-        window.scrollTo({ top: section.offsetTop - scrollMarginTop, behavior: "smooth" });
-      }, 100);
-    }
-  }
-
-  function initNavMenuScrollspy() {
-    const navMenuLinks = document.querySelectorAll(".navmenu a");
-    function updateActiveLink() {
-      navMenuLinks.forEach(link => {
-        if (!link.hash) return;
-        const section = document.querySelector(link.hash);
-        if (!section) return;
-
-        const position = window.scrollY + 200;
-        const isActive = position >= section.offsetTop && position <= section.offsetTop + section.offsetHeight;
-        link.classList.toggle("active", isActive);
-      });
-    }
-
-    window.addEventListener("scroll", updateActiveLink);
-    updateActiveLink();
   }
 })();

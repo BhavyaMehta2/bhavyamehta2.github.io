@@ -18,7 +18,7 @@
 
   async function getData() {
     try {
-      let response = await fetch("/api/google-sheets", {
+      let response = await fetch("/api/google-sheet", {
         method: "GET",
         headers: { "Content-Type": "application/json" }
       });

@@ -13,7 +13,7 @@
             "name": "2-Ethyl Hexanol",
             "class": "alcohol",
             "formula": "CH3CH2CH(CH2CH3)CH2CH2OH",
-            "image": "https://www.acs.org/content/dam/acsorg/molecule/archive-new/b/benzene-teaser.png"
+            "image": "assets/img/product-images/2ethylhexanol.png"
         },
         {
             "id": "nbutanol",

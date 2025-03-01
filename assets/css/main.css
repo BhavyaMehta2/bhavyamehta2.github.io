@@ -106,7 +106,7 @@ h6 {
 
 /* PHP Email Form Messages
 ------------------------------*/
-.php-email-form .error-message {
+.email-form .error-message {
   display: none;
   background: #df1529;
   color: #ffffff;
@@ -116,7 +116,7 @@ h6 {
   font-weight: 600;
 }
 
-.php-email-form .sent-message {
+.email-form .sent-message {
   display: none;
   color: #ffffff;
   background: #059652;
@@ -126,7 +126,7 @@ h6 {
   font-weight: 600;
 }
 
-.php-email-form .loading {
+.email-form .loading {
   display: none;
   background: var(--surface-color);
   text-align: center;
@@ -134,7 +134,7 @@ h6 {
   margin-bottom: 24px;
 }
 
-.php-email-form .loading:before {
+.email-form .loading:before {
   content: "";
   display: inline-block;
   border-radius: 50%;
@@ -143,10 +143,10 @@ h6 {
   margin: 0 10px -6px 0;
   border: 3px solid var(--accent-color);
   border-top-color: var(--surface-color);
-  animation: php-email-form-loading 1s linear infinite;
+  animation: email-form-loading 1s linear infinite;
 }
 
-@keyframes php-email-form-loading {
+@keyframes email-form-loading {
   0% {
     transform: rotate(0deg);
   }
@@ -862,13 +862,13 @@ section,
   padding: 60px 0;
   display: flex;
   align-items: center;
-  background: url("../img/hero-bg.jpg") top left;
+  background: url("../img/hero-bg.gif") top left;
   background-size: cover;
 }
 
 .hero:before {
   content: "";
-  background: color-mix(in srgb, var(--background-color), transparent 30%);
+  background: color-mix(in srgb, var(--background-color), transparent 80%);
   position: absolute;
   bottom: 0;
   top: 0;
@@ -1363,7 +1363,7 @@ section,
 }
 
 /*--------------------------------------------------------------
-# Portfolio Section
+# Product Section
 --------------------------------------------------------------*/
 .alcohol {
   background-color: var(--alcohol)
@@ -1389,14 +1389,14 @@ section,
   background-color: var(--other)
 }
 
-.portfolio .portfolio-filters {
+.product .product-filters {
   padding: 0;
   margin: 0 auto 20px auto;
   list-style: none;
   text-align: center;
 }
 
-.portfolio .portfolio-filters li {
+.product .product-filters li {
   cursor: pointer;
   display: inline-block;
   padding: 8px 20px 10px 20px;
@@ -1410,64 +1410,64 @@ section,
   font-family: var(--heading-font);
 }
 
-.portfolio .portfolio-filters .filter-all:hover,
-.portfolio .portfolio-filters .filter-all.filter-active {
+.product .product-filters .filter-all:hover,
+.product .product-filters .filter-all.filter-active {
   color: var(--contrast-color);
   background-color: #ff746d;
 }
 
-.portfolio .portfolio-filters .filter-alcohol:hover,
-.portfolio .portfolio-filters .filter-alcohol.filter-active {
+.product .product-filters .filter-alcohol:hover,
+.product .product-filters .filter-alcohol.filter-active {
   color: var(--default-color);
   background-color: var(--alcohol);
 }
 
-.portfolio .portfolio-filters .filter-glycol:hover,
-.portfolio .portfolio-filters .filter-glycol.filter-active {
+.product .product-filters .filter-glycol:hover,
+.product .product-filters .filter-glycol.filter-active {
   color: var(--default-color);
   background-color: var(--glycol);
 }
 
-.portfolio .portfolio-filters .filter-ester:hover,
-.portfolio .portfolio-filters .filter-ester.filter-active {
+.product .product-filters .filter-ester:hover,
+.product .product-filters .filter-ester.filter-active {
   color: var(--default-color);
   background-color: var(--ester);
 }
 
-.portfolio .portfolio-filters .filter-ketone:hover,
-.portfolio .portfolio-filters .filter-ketone.filter-active {
+.product .product-filters .filter-ketone:hover,
+.product .product-filters .filter-ketone.filter-active {
   color: var(--default-color);
   background-color: var(--ketone);
 }
 
-.portfolio .portfolio-filters .filter-hydrocarbon:hover,
-.portfolio .portfolio-filters .filter-hydrocarbon.filter-active {
+.product .product-filters .filter-hydrocarbon:hover,
+.product .product-filters .filter-hydrocarbon.filter-active {
   color: var(--default-color);
   background-color: var(--hydrocarbon);
 }
 
-.portfolio .portfolio-filters .filter-other:hover,
-.portfolio .portfolio-filters .filter-other.filter-active {
+.product .product-filters .filter-other:hover,
+.product .product-filters .filter-other.filter-active {
   color: var(--default-color);
   background-color: var(--other);
 }
 
-.portfolio .portfolio-filters li:first-child {
+.product .product-filters li:first-child {
   margin-left: 0;
 }
 
-.portfolio .portfolio-filters li:last-child {
+.product .product-filters li:last-child {
   margin-right: 0;
 }
 
 @media (max-width: 575px) {
-  .portfolio .portfolio-filters li {
+  .product .product-filters li {
     font-size: 14px;
     margin: 0 0 10px 0;
   }
 }
 
-.portfolio .portfolio-item {
+.product .product-item {
   position: relative;
   overflow: hidden;
 
@@ -1475,7 +1475,7 @@ section,
   z-index: 1;
 }
 
-.portfolio .portfolio-item .portfolio-info {
+.product .product-item .product-info {
   position: absolute;
   left: 12px;
   right: 12px;
@@ -1485,35 +1485,35 @@ section,
   padding: 15px;
 }
 
-.portfolio .portfolio-item .portfolio-info h4 {
+.product .product-item .product-info h4 {
   font-size: 18px;
   font-weight: 600;
   padding-right: 50px;
 }
 
-.portfolio .portfolio-item .img-fluid {
+.product .product-item .img-fluid {
   box-shadow: 0px 0 15px 0 rgba(0, 0, 0, 0.2);
   z-index: 3;
 }
 
 
-.portfolio .portfolio-item .portfolio-info p {
+.product .product-item .product-info p {
   color: color-mix(in srgb, var(--default-color), transparent 30%);
   font-size: 14px;
   margin-bottom: 0;
   padding-right: 50px;
 }
 
-.portfolio .portfolio-item:hover .portfolio-info {
+.product .product-item:hover .product-info {
   background: var(--accent-color);
   transition: all 0.3s;
 }
 
-.portfolio .portfolio-item:hover .portfolio-info h4 {
+.product .product-item:hover .product-info h4 {
   color: var(--contrast-color);
 }
 
-.portfolio .portfolio-item:hover .portfolio-info p {
+.product .product-item:hover .product-info p {
   color: color-mix(in srgb, var(--contrast-color), transparent 30%);
 }
 
@@ -1568,7 +1568,7 @@ section,
   color: var(--contrast-color);
 }
 
-.contact .php-email-form {
+.contact .email-form {
   background-color: var(--surface-color);
   height: 100%;
   padding: 30px;
@@ -1576,14 +1576,14 @@ section,
 }
 
 @media (max-width: 575px) {
-  .contact .php-email-form {
+  .contact .email-form {
     padding: 20px;
   }
 }
 
-.contact .php-email-form input[type=text],
-.contact .php-email-form input[type=email],
-.contact .php-email-form textarea {
+.contact .email-form input[type=text],
+.contact .email-form input[type=email],
+.contact .email-form textarea {
   font-size: 14px;
   padding: 10px 15px;
   box-shadow: none;
@@ -1593,19 +1593,19 @@ section,
   border-color: color-mix(in srgb, var(--default-color), transparent 80%);
 }
 
-.contact .php-email-form input[type=text]:focus,
-.contact .php-email-form input[type=email]:focus,
-.contact .php-email-form textarea:focus {
+.contact .email-form input[type=text]:focus,
+.contact .email-form input[type=email]:focus,
+.contact .email-form textarea:focus {
   border-color: var(--accent-color);
 }
 
-.contact .php-email-form input[type=text]::placeholder,
-.contact .php-email-form input[type=email]::placeholder,
-.contact .php-email-form textarea::placeholder {
+.contact .email-form input[type=text]::placeholder,
+.contact .email-form input[type=email]::placeholder,
+.contact .email-form textarea::placeholder {
   color: color-mix(in srgb, var(--default-color), transparent 70%);
 }
 
-.contact .php-email-form button[type=submit] {
+.contact .email-form button[type=submit] {
   color: var(--contrast-color);
   background: var(--accent-color);
   border: 0;
@@ -1614,7 +1614,7 @@ section,
   border-radius: 50px;
 }
 
-.contact .php-email-form button[type=submit]:hover {
+.contact .email-form button[type=submit]:hover {
   background: color-mix(in srgb, var(--accent-color), transparent 25%);
 }
 
@@ -1685,35 +1685,35 @@ section,
 }
 
 /*--------------------------------------------------------------
-# Portfolio Details Section
+# Product Details Section
 --------------------------------------------------------------*/
-.portfolio-details .portfolio-details-slider img {
+.product .product-slider img {
   width: 100%;
 }
 
-.portfolio-details .portfolio-details-slider .swiper-pagination {
+.product .product-slider .swiper-pagination {
   margin-top: 20px;
   position: relative;
 }
 
-.portfolio-details .portfolio-details-slider .swiper-pagination .swiper-pagination-bullet {
+.product .product-slider .swiper-pagination .swiper-pagination-bullet {
   width: 12px;
   height: 12px;
   background-color: color-mix(in srgb, var(--default-color), transparent 85%);
   opacity: 1;
 }
 
-.portfolio-details .portfolio-details-slider .swiper-pagination .swiper-pagination-bullet-active {
+.product .product-slider .swiper-pagination .swiper-pagination-bullet-active {
   background-color: var(--accent-color);
 }
 
-.portfolio-details .portfolio-info {
+.product .product-info {
   background-color: var(--surface-color);
   padding: 30px;
   box-shadow: 0px 0 30px rgba(0, 0, 0, 0.1);
 }
 
-.portfolio-details .portfolio-info h3 {
+.product .product-info h3 {
   font-size: 22px;
   font-weight: 700;
   margin-bottom: 20px;
@@ -1721,27 +1721,27 @@ section,
   border-bottom: 1px solid color-mix(in srgb, var(--default-color), transparent 85%);
 }
 
-.portfolio-details .portfolio-info ul {
+.product .product-info ul {
   list-style: none;
   padding: 0;
   font-size: 15px;
 }
 
-.portfolio-details .portfolio-info ul li+li {
+.product .product-info ul li+li {
   margin-top: 10px;
 }
 
-.portfolio-details .portfolio-description {
+.product .product-description {
   padding-top: 30px;
 }
 
-.portfolio-details .portfolio-description h2 {
+.product .product-description h2 {
   font-size: 26px;
   font-weight: 700;
   margin-bottom: 20px;
 }
 
-.portfolio-details .portfolio-description p {
+.product .product-description p {
   padding: 0;
   color: color-mix(in srgb, var(--default-color), transparent 30%);
 }

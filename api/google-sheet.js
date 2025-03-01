@@ -1,7 +1,7 @@
 export default async function handler(req, res) {
     if (req.method === "POST") {
         try {
-            const response = await fetch("https://script.google.com/macros/s/AKfycby7RkSsLDqRDnx54Lz7hK5x9SL1CpRl3ScqetOo4UQfCxschsiek-mVm0_PWqAiub7X/exec", {
+            const response = await fetch("https://script.google.com/macros/s/AKfycbzqAnccKllGD8JaNFoQrid0AgFHpLu71IArIcc009yL7VW2BUVQjYVO63-cKfg2gGCO/exec", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(req.body)
@@ -16,7 +16,7 @@ export default async function handler(req, res) {
     }
     else if (req.method === "GET") {
         try {
-            const response = await fetch("https://script.google.com/macros/s/AKfycby7RkSsLDqRDnx54Lz7hK5x9SL1CpRl3ScqetOo4UQfCxschsiek-mVm0_PWqAiub7X/exec", {
+            const response = await fetch("https://script.google.com/macros/s/AKfycbzqAnccKllGD8JaNFoQrid0AgFHpLu71IArIcc009yL7VW2BUVQjYVO63-cKfg2gGCO/exec", {
                 method: "GET",
                 headers: { "Content-Type": "application/json" }
             });

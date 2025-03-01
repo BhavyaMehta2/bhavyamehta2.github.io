@@ -58,7 +58,7 @@
 
         <nav id="navmenu" class="navmenu">
           <ul>
-            <li><a href="index.html#hero" class="active">Home</a></li>
+            <li><a href="index.html" class="active">Home</a></li>
             <li><a href="index.html#about">About</a></li>
             <li><a href="index.html#services">Services</a></li>
             <li class="dropdown">
@@ -80,7 +80,6 @@
     <section id="hero" class="hero section light-background">
       <video autoplay muted loop playsinline>
         <source src="assets/img/hero-bg.mp4" type="video/mp4">
-        Your browser does not support the video tag.
       </video>
       <div class="container">
         <div class="row gy-4">
@@ -436,25 +435,15 @@
       </div><!-- End Section Title -->
 
       <div class="container">
-
         <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
 
           <ul class="product-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
-            <li data-filter="*" class="filter-active filter-all">All</li>
-            <li data-filter=".filter-alcohol" class="filter-alcohol">Alcohols</li>
-            <li data-filter=".filter-glycol" class="filter-glycol">Glycols</li>
-            <li data-filter=".filter-ester" class="filter-ester">Esters</li>
-            <li data-filter=".filter-ketone" class="filter-ketone">Ketones</li>
-            <li data-filter=".filter-hydrocarbon" class="filter-hydrocarbon">Hydrocarbons</li>
-            <li data-filter=".filter-other" class="filter-other">Others</li>
-          </ul><!-- End Product Filters -->
+          </ul>
 
           <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
-          </div><!-- End Product Container -->
+          </div>
         </div>
-
       </div>
-
     </section><!-- /Product Section -->
 
     <!-- Contact Section -->
@@ -541,50 +530,6 @@
               </div>
             </form>
           </div><!-- End Contact Form -->
-
-          <script>
-            document.getElementById("contactForm").addEventListener("submit", async function (e) {
-              e.preventDefault();
-
-              // Show loading message
-              document.querySelector(".loading").style.display = "block";
-              document.querySelector(".error-message").style.display = "none";
-              document.querySelector(".sent-message").style.display = "none";
-
-              const formData = {
-                name: document.getElementById("name-field").value,
-                email: document.getElementById("email-field").value,
-                subject: document.getElementById("subject-field").value,
-                message: document.getElementById("message-field").value
-              };
-
-              try {
-                let response = await fetch("/api/google-sheet", {  // Use Vercel API route instead
-                  method: "POST",
-                  headers: { "Content-Type": "application/json" },
-                  body: JSON.stringify(formData)
-                });
-
-                let result = await response.json();
-
-                // Hide loading and show success message
-                document.querySelector(".loading").style.display = "none";
-                document.querySelector(".sent-message").style.display = "block";
-
-                // Clear form fields
-                document.getElementById("contactForm").reset();
-              } catch (error) {
-                console.error("Error:", error);
-
-                // Hide loading and show error message
-                document.querySelector(".loading").style.display = "none";
-                document.querySelector(".error-message").textContent = "Failed to submit. Please try again.";
-                document.querySelector(".error-message").style.display = "block";
-              }
-            });
-
-          </script>
-
         </div>
 
       </div>
@@ -648,7 +593,7 @@
       <p>© <span>Copyright</span> <strong class="px-1 sitename">Plastichem Indl Corpn</strong> <span>All Rights
           Reserved</span></p>
       <div class="credits">
-        Designed with ❤️ by <a href="https://github.com/BhavyaMehta2">Bhavya Mehta</a>
+        Designed with ❤️ by <a href="https://www.linkedin.com/in/BhavyaMxyz/">Bhavya Mehta</a>
       </div>
     </div>
 

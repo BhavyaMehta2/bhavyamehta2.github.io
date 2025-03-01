@@ -13,23 +13,45 @@
     handleHashNavigation();
     initNavMenuScrollspy();
     new PureCounter();
-    getData();
+    postData();
   });
 
-  async function getData() {
-    try {
-      let response = await fetch("/api/google-sheet", {
-        method: "GET",
-        headers: { "Content-Type": "application/json" }
-      });
+  async function postData() {
+    document.getElementById("contactForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
 
-      if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+      document.querySelector(".loading").style.display = "block";
+      document.querySelector(".error-message").style.display = "none";
+      document.querySelector(".sent-message").style.display = "none";
 
-      let data = await response.json();
-      console.log("Fetched Data:", data);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
+      const formData = {
+        name: document.getElementById("name-field").value,
+        email: document.getElementById("email-field").value,
+        subject: document.getElementById("subject-field").value,
+        message: document.getElementById("message-field").value
+      };
+
+      try {
+        let response = await fetch("/api/google-sheet", {  // Use Vercel API route instead
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData)
+        });
+
+        let result = await response.json();
+
+        document.querySelector(".loading").style.display = "none";
+        document.querySelector(".sent-message").style.display = "block";
+
+        document.getElementById("contactForm").reset();
+      } catch (error) {
+        console.error("Error:", error);
+
+        document.querySelector(".loading").style.display = "none";
+        document.querySelector(".error-message").textContent = "Failed to submit. Please try again.";
+        document.querySelector(".error-message").style.display = "block";
+      }
+    });
   }
 
   function initScrollEffects() {
@@ -107,67 +129,141 @@
     });
   }
 
-  function loadProducts() {
-    fetch("products.json")
-      .then(response => response.json())
-      .then(data => {
-        generateDropdown(data.products, data.categories);
+  async function loadProducts() {
+    try {
+      let response = await fetch("/api/google-sheet", {
+        method: "GET",
+        headers: { "Content-Type": "application/json" }
+      });
 
-        const container = document.querySelector(".isotope-container");
-        if (!container) return;
+      if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
 
-        data.products.forEach(product => {
-          container.insertAdjacentHTML("beforeend", `
-            <a href="product.html?id=${product.id}" class="col-lg-4 col-md-6 product-item isotope-item filter-${product.class}">
+      let apiData = await response.json();
+      console.log("Loaded data from API:", apiData);
+      processProducts(apiData);
+    } catch (error) {
+      console.error("Error fetching data from API, loading from local JSON:", error);
+
+      fetch("products.json")
+        .then(response => response.json())
+        .then(localData => {
+          console.log("Loaded data from local JSON:", localData);
+          processProducts(localData);
+        })
+        .catch(jsonError => console.error("Error loading products from local JSON:", jsonError));
+    }
+  }
+
+  function processProducts(data) {
+    const products = Object.entries(data.products);
+    const categories = data.categories;
+
+    generateProductCards(products);
+    generateFilters(categories);
+    generateDropdown(products.map(([_, product]) => product), categories);
+  }
+
+  function generateProductCards(products) {
+    const container = document.querySelector(".isotope-container");
+    if (!container) return;
+
+    products.forEach(([productNumber, product]) => {
+      container.insertAdjacentHTML("beforeend", `
+            <a href="product.html?pid=${productNumber}" class="col-lg-4 col-md-6 product-item isotope-item filter-${product.class}">
               <img src="${product.image}" class="img-fluid ${product.class}" alt="">
               <div class="product-info">
                 <h4>${product.name}</h4>
                 <p>${product.formula}</p>
               </div>
             </a>
-          `);
-        });
+        `);
+    });
 
-        initializeIsotope();
-      })
-      .catch(error => console.error("Error loading products:", error));
+    initializeIsotope();
   }
 
   function generateDropdown(products, categoryNames) {
-
     const categories = {};
-    products.forEach(({ class: category, ...product }) => {
-      if (!categories[category]) {
-        categories[category] = [];
-      }
-      categories[category].push(product);
-    });
 
-    const dropdownContainer = document.querySelector("#productDropdown");
-    if (!dropdownContainer) {
-      console.error("Error: #productDropdown element not found.");
-      return;
+    for (const [productNumber, { class: category, name }] of Object.entries(products)) {
+      (categories[category] ||= []).push({ name, productNumber });
     }
 
-    Object.entries(categories).forEach(([category, products]) => {
-      const categoryElement = document.createElement("li");
-      categoryElement.classList.add("dropdown");
-      categoryElement.innerHTML = `
-      <a href="index.html#products"><span>${categoryNames[category] || category}</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-      <ul>${products.map(({ id, name }) => `<li><a href="product.html?id=${id}">${name}</a></li>`).join('')}</ul>
-    `;
-      dropdownContainer.appendChild(categoryElement);
+    const dropdownContainer = document.querySelector("#productDropdown");
+    if (!dropdownContainer) return console.error("Error: #productDropdown element not found.");
+
+    dropdownContainer.innerHTML = Object.entries(categoryNames)
+      .filter(([category]) => categories[category])
+      .map(([category, categoryName]) => `
+            <li class="dropdown">
+                <a href="#products" class="category-link" data-filter=".filter-${category}">
+                    <span>${categoryName}</span> <i class="bi bi-chevron-down toggle-dropdown"></i>
+                </a>
+                <ul>
+                    ${categories[category]
+          .map(({ productNumber, name }) => `<li><a href="product.html?pid=${productNumber}">${name}</a></li>`)
+          .join("")}
+                </ul>
+            </li>
+        `)
+      .join("");
+
+    document.querySelectorAll(".category-link").forEach(link => {
+      link.addEventListener("click", function (event) {
+        event.preventDefault();
+
+        const filterContainer = document.querySelector(".isotope-filters");
+        const filterValue = this.getAttribute("data-filter");
+        const filterBtn = filterContainer.querySelector(`[data-filter="${filterValue}"]`);
+
+        if (!filterBtn) return;
+
+        filterContainer.querySelector(".filter-active")?.classList.remove("filter-active");
+        filterBtn.classList.add("filter-active");
+
+        const isotopeLayout = document.querySelector(".isotope-layout");
+        if (isotopeLayout) {
+          const isotopeContainer = isotopeLayout.querySelector(".isotope-container");
+          if (isotopeContainer && isotopeContainer.isotope) {
+            isotopeContainer.isotope.arrange({ filter: filterValue });
+          }
+        }
+
+        const targetUrl = `index.html#products`;
+        if (window.location.href.includes("index.html")) {
+          const productsSection = document.querySelector("#products");
+          if (productsSection) {
+            productsSection.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+          applyIsotopeFilter(this.getAttribute("data-filter"));
+        } else {
+          window.location.href = targetUrl;
+        }
+      });
+    });
+  }
+
+  function generateFilters(categories) {
+    const filterContainer = document.querySelector(".product-filters");
+    if (!filterContainer) return;
+
+    filterContainer.innerHTML = `<li data-filter="*" class="filter-active filter-all">All</li>`;
+
+    Object.entries(categories).forEach(([key, name]) => {
+      filterContainer.insertAdjacentHTML("beforeend", `
+            <li data-filter=".filter-${key}" class="filter-${key}">${name}</li>
+        `);
     });
   }
 
   function initializeIsotope() {
     document.querySelectorAll(".isotope-layout").forEach(isotopeItem => {
-      let layout = isotopeItem.getAttribute("data-layout") || "masonry";
-      let filter = isotopeItem.getAttribute("data-default-filter") || "*";
-      let sort = isotopeItem.getAttribute("data-sort") || "original-order";
+      const layout = isotopeItem.getAttribute("data-layout") || "masonry";
+      const filter = isotopeItem.getAttribute("data-default-filter") || "*";
+      const sort = isotopeItem.getAttribute("data-sort") || "original-order";
 
       imagesLoaded(isotopeItem.querySelector(".isotope-container"), function () {
-        let initIsotope = new Isotope(isotopeItem.querySelector(".isotope-container"), {
+        const isotopeInstance = new Isotope(isotopeItem.querySelector(".isotope-container"), {
           itemSelector: ".isotope-item",
           layoutMode: layout,
           filter: filter,
@@ -175,17 +271,19 @@
         });
 
         setTimeout(() => {
-          initIsotope.reloadItems();
-          initIsotope.arrange();
+          isotopeInstance.reloadItems();
+          isotopeInstance.arrange();
         }, 200);
 
         isotopeItem.querySelectorAll(".isotope-filters li").forEach(filterBtn => {
           filterBtn.addEventListener("click", function () {
             isotopeItem.querySelector(".isotope-filters .filter-active").classList.remove("filter-active");
             this.classList.add("filter-active");
-            initIsotope.arrange({ filter: this.getAttribute("data-filter") });
+            isotopeInstance.arrange({ filter: this.getAttribute("data-filter") });
           });
         });
+
+        isotopeItem.querySelector(".isotope-container").isotope = isotopeInstance;
       });
     });
   }

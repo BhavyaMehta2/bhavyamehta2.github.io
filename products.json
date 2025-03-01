@@ -7,125 +7,125 @@
         "hydrocarbon": "Hydrocarbons",
         "other": "Others"
     },
-    "products": [
-        {
+    "products": {
+        "1": {
             "id": "2ethylhexanol",
             "name": "2-Ethyl Hexanol",
             "class": "alcohol",
             "formula": "CH3CH2CH(CH2CH3)CH2CH2OH",
             "image": "assets/img/product-images/2ethylhexanol.png"
         },
-        {
+        "2": {
             "id": "nbutanol",
             "name": "N-Butanol",
             "class": "alcohol",
             "formula": "CH3(CH2)3OH",
             "image": "assets/img/product-images/nbutanol.png"
         },
-        {
+        "3": {
             "id": "isobutanol",
             "name": "Isobutanol",
             "class": "alcohol",
             "formula": "(CH3)2CHCH2OH",
             "image": "assets/img/product-images/isobutanol.png"
         },
-        {
+        "4": {
             "id": "nbutylacetate",
             "name": "N-Butyl Acetate",
             "class": "ester",
             "formula": "CH3COOCH2CH2CH2CH3",
             "image": "assets/img/product-images/nbutylacetate.png"
         },
-        {
+        "5": {
             "id": "isobutylacetate",
             "name": "Isobutyl Acetate",
             "class": "ester",
             "formula": "CH3COOCH2CH(CH3)2",
             "image": "assets/img/product-images/isobutylacetate.png"
         },
-        {
+        "6": {
             "id": "xylene",
             "name": "Xylene",
             "class": "hydrocarbon",
             "formula": "C6H4(CH3)2",
             "image": "assets/img/product-images/xylene.png"
         },
-        {
+        "7": {
             "id": "propyleneglycol",
             "name": "Propylene Glycol",
             "class": "glycol",
             "formula": "CH3CHOHCH2OH",
             "image": "assets/img/product-images/propyleneglycol.png"
         },
-        {
+        "8": {
             "id": "isopropylacetate",
             "name": "Isopropyl Acetate",
             "class": "ester",
             "formula": "CH3COOCH(CH3)2",
             "image": "assets/img/product-images/isopropylacetate.png"
         },
-        {
+        "9": {
             "id": "toluene",
             "name": "Toluene",
             "class": "hydrocarbon",
             "formula": "C6H5CH3",
             "image": "assets/img/product-images/toluene.png"
         },
-        {
+        "10": {
             "id": "npropanol",
             "name": "N-Propanol",
             "class": "alcohol",
             "formula": "CH3CH2CH2OH",
             "image": "assets/img/product-images/npropanol.png"
         },
-        {
+        "11": {
             "id": "isopropanol",
             "name": "Isopropanol",
             "class": "alcohol",
             "formula": "CH3CHOHCH3",
             "image": "assets/img/product-images/isopropanol.png"
         },
-        {
+        "12": {
             "id": "monoethyleneglycol",
             "name": "Mono Ethylene Glycol",
             "class": "glycol",
             "formula": "HOCH2CH2OH",
             "image": "assets/img/product-images/monoethyleneglycol.png"
         },
-        {
+        "13": {
             "id": "butylglycol",
             "name": "Butyl Glycol",
             "class": "glycol",
             "formula": "CH3(CH2)3CHOHCH3",
             "image": "assets/img/product-images/butylglycol.png"
         },
-        {
+        "14": {
             "id": "orthoxylene",
             "name": "Ortho-Xylene",
             "class": "hydrocarbon",
             "formula": "C6H4(CH3)2",
             "image": "assets/img/product-images/orthoxylene.png"
         },
-        {
+        "15": {
             "id": "maleicanhydride",
             "name": "Maleic Anhydride",
             "class": "other",
             "formula": "C4H2O3",
             "image": "assets/img/product-images/maleicanhydride.png"
         },
-        {
+        "16": {
             "id": "cyclohexanone",
             "name": "Cyclohexanone",
             "class": "ketone",
             "formula": "C6H10O",
             "image": "assets/img/product-images/cyclohexanone.png"
         },
-        {
+        "17": {
             "id": "methylisobutylketone",
             "name": "Methyl Isobutyl Ketone",
             "class": "ketone",
             "formula": "C6H12O",
             "image": "assets/img/product-images/methylisobutylketone.png"
         }
-    ]
+    }
 }

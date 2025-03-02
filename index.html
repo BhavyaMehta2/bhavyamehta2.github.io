@@ -8,44 +8,74 @@
   <meta name="description" content="">
   <meta name="keywords" content="">
 
-  <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
     rel="stylesheet">
 
-  <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
-  <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
 </head>
 
-<body class="index-page">
+<body id="index-page" class="index-page">
 
   <header id="header" class="header sticky-top">
 
     <div class="topbar d-flex align-items-center">
       <div class="container d-flex justify-content-center justify-content-md-between">
         <div class="contact-info d-flex align-items-center">
-          <i class="bi bi-envelope d-flex align-items-center"><a
-              href="mailto:info@plastichem.in">info@plastichem.in</a></i>
-          <i class="bi bi-phone d-flex align-items-center ms-4"><a href="https://wa.me/+919223432786">+91
-              9223432786</a></i>
+          <i class="bi bi-envelope d-flex align-items-center" onclick="copyToClipboard('info@plastichem.in', event)">
+            <span>info@plastichem.in</span></i>
+          <i class="bi bi-phone d-flex align-items-center ms-4" onclick="copyToClipboard('+919223432786', event)">
+            <span>+91 9223432786</span></i>
+          <script>
+            function copyToClipboard(text, event) {
+              navigator.clipboard.writeText(text).then(() => {
+                showCopiedPopup(event.target);
+              }).catch(err => {
+                console.error("Failed to copy text: ", err);
+              });
+            }
+
+            function copyToClipboard(text, event) {
+              navigator.clipboard.writeText(text).then(() => {
+                showCopiedPopup(event.target);
+              }).catch(err => {
+                console.error("Failed to copy text: ", err);
+              });
+            }
+
+            function showCopiedPopup(element) {
+              const popup = document.createElement("div");
+              popup.innerText = "Copied!";
+              popup.className = "copied-popup";
+
+              element.parentElement.appendChild(popup);
+
+              // popup.style.left = `${element.offsetWidth + 10}px`;
+
+              popup.classList.add("show");
+
+              setTimeout(() => {
+                popup.remove();
+              }, 1000);
+            }
+
+          </script>
         </div>
         <!-- <div class="social-links d-none d-md-flex align-items-center">
-                <a href="https://wa.me/+919223432786" class="whatsapp"><i class="bi bi-whatsapp"></i></a>
-              </div> -->
+          <a href="https://wa.me/+919223432786" class="whatsapp"><i class="bi bi-whatsapp"></i></a>
+        </div> -->
       </div>
     </div>
 
@@ -58,7 +88,7 @@
 
         <nav id="navmenu" class="navmenu">
           <ul>
-            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="index.html#hero">Home</a></li>
             <li><a href="index.html#about">About</a></li>
             <li><a href="index.html#services">Services</a></li>
             <li class="dropdown">
@@ -76,7 +106,6 @@
 
   <main class="main">
 
-    <!-- Hero Section -->
     <section id="hero" class="hero section light-background">
       <video autoplay muted loop playsinline>
         <source src="assets/img/hero-bg.mp4" type="video/mp4">
@@ -100,16 +129,12 @@
         </div>
       </div>
 
-    </section><!-- /Hero Section -->
+    </section>
 
-    <!-- Featured Services Section -->
     <section id="featured-services" class="featured-services section">
-
       <div class="container">
-
         <div class="row gy-4">
-
-          <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-xl-3 col-md-6 d-flex">
             <div class="service-item position-relative">
               <div class="icon"><i class="bi bi-graph-up-arrow icon"></i></div>
               <h4><a class="stretched-link">Growth Through Customer Satisfaction</a></h4>
@@ -450,19 +475,19 @@
     <section id="contact" class="contact section">
 
       <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
+      <div class="container section-title">
         <h2>Contact</h2>
         <p><span>Need Help?</span> <span class="description-title">Contact Us</span></p>
       </div><!-- End Section Title -->
 
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
+      <div class="container">
 
         <div class="row gy-4">
 
           <div class="col-lg-5">
 
             <div class="info-wrap">
-              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
+              <div class="info-item d-flex">
                 <i class="bi bi-geo-alt flex-shrink-0"></i>
                 <div>
                   <h3>Address</h3>
@@ -471,7 +496,7 @@
                 </div>
               </div><!-- End Info Item -->
 
-              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
+              <div class="info-item d-flex">
                 <i class="bi bi-telephone flex-shrink-0"></i>
                 <div>
                   <h3>Call Us</h3>
@@ -479,7 +504,7 @@
                 </div>
               </div><!-- End Info Item -->
 
-              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
+              <div class="info-item d-flex">
                 <i class="bi bi-envelope flex-shrink-0"></i>
                 <div>
                   <h3>Email Us</h3>
@@ -495,7 +520,7 @@
           </div>
 
           <div class="col-lg-7">
-            <form id="contactForm" class="email-form" data-aos="fade-up" data-aos-delay="200">
+            <form id="contactForm" class="email-form">
               <div class="row gy-4">
 
                 <div class="col-md-6">
@@ -559,9 +584,10 @@
           <h4>Useful Links</h4>
           <ul>
             <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">About us</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">About Us</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Services</a></li>
             <li><i class="bi bi-chevron-right"></i> <a href="#">Products</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Terms of service</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Contact Us</a></li>
           </ul>
         </div>
 
@@ -590,20 +616,18 @@
     </div>
 
     <div class="container copyright text-center mt-4">
-      <p>© <span>Copyright</span> <strong class="px-1 sitename">Plastichem Indl Corpn</strong> <span>All Rights
+      <p>© <span>Copyright</span><strong class="px-1 sitename">Plastichem Indl Corpn</strong><span>All Rights
           Reserved</span></p>
       <div class="credits">
-        Designed with ❤️ by <a href="https://www.linkedin.com/in/BhavyaMxyz/">Bhavya Mehta</a>
+        Designed with ❤️ by <a href="https://www.linkedin.com/in/BhavyaMxyz/" target="_blank">Bhavya Mehta</a>
       </div>
     </div>
 
   </footer>
 
-  <!-- Scroll Top -->
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
       class="bi bi-arrow-up-short"></i></a>
 
-  <!-- Preloader -->
   <div id="preloader">
     <div></div>
     <div></div>
@@ -611,7 +635,6 @@
     <div></div>
   </div>
 
-  <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
@@ -621,7 +644,6 @@
   <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
 
-  <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
 
 </body>

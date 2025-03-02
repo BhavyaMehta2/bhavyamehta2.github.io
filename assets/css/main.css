@@ -852,6 +852,31 @@ section,
   color: var(--accent-color);
 }
 
+.copied-popup {
+  position: absolute;
+  background: #000;
+  color: #fff;
+  padding: 5px 8px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: bold;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.copied-popup.show {
+  opacity: 1;
+}
+
+.contact-info i,
+.contact-info span {
+  cursor: pointer;
+  /* Ensures hand cursor */
+  user-select: none;
+  /* Prevents text selection */
+}
+
 /*--------------------------------------------------------------
 # Hero Section
 --------------------------------------------------------------*/

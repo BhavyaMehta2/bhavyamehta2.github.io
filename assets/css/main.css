@@ -108,7 +108,6 @@ h6 {
 ------------------------------*/
 .email-form .error-message {
   display: none;
-  background: #df1529;
   color: #ffffff;
   text-align: left;
   padding: 15px;
@@ -119,7 +118,6 @@ h6 {
 .email-form .sent-message {
   display: none;
   color: #ffffff;
-  background: #059652;
   text-align: center;
   padding: 15px;
   margin-bottom: 24px;
@@ -480,7 +478,7 @@ h6 {
   }
 
   .mobile-nav-active .navmenu>ul {
-    display: block;
+    dispery: block;
   }
 }
 
@@ -488,8 +486,9 @@ h6 {
 # Global Footer
 --------------------------------------------------------------*/
 .footer {
+  background-color: color-mix(in srgb, var(--accent-color), transparent 96%);
+  padding: 50px 0;
   color: var(--default-color);
-  background-color: var(--background-color);
   font-size: 14px;
   padding-bottom: 50px;
   position: relative;
@@ -1427,6 +1426,11 @@ section,
   background-color: var(--other)
 }
 
+.product {
+  background-color: color-mix(in srgb, var(--accent-color), transparent 96%);
+  padding: 50px 0;
+}
+
 .product .product-filters {
   padding: 0;
   margin: 0 auto 20px auto;
@@ -1725,33 +1729,38 @@ section,
 /*--------------------------------------------------------------
 # Product Details Section
 --------------------------------------------------------------*/
-.product .product-slider img {
+.product-details .product-slider {
+  max-width: 768px;
+  max-height: 1024px;
+}
+
+.product-details .product-slider img {
   width: 100%;
 }
 
-.product .product-slider .swiper-pagination {
+.product-details .product-slider .swiper-pagination {
   margin-top: 20px;
   position: relative;
 }
 
-.product .product-slider .swiper-pagination .swiper-pagination-bullet {
+.product-details .product-slider .swiper-pagination .swiper-pagination-bullet {
   width: 12px;
   height: 12px;
   background-color: color-mix(in srgb, var(--default-color), transparent 85%);
   opacity: 1;
 }
 
-.product .product-slider .swiper-pagination .swiper-pagination-bullet-active {
+.product-details .product-slider .swiper-pagination .swiper-pagination-bullet-active {
   background-color: var(--accent-color);
 }
 
-.product .product-info {
+.product-details .product-info {
   background-color: var(--surface-color);
   padding: 30px;
   box-shadow: 0px 0 30px rgba(0, 0, 0, 0.1);
 }
 
-.product .product-info h3 {
+.product-details .product-info h3 {
   font-size: 22px;
   font-weight: 700;
   margin-bottom: 20px;
@@ -1759,27 +1768,27 @@ section,
   border-bottom: 1px solid color-mix(in srgb, var(--default-color), transparent 85%);
 }
 
-.product .product-info ul {
+.product-details .product-info ul {
   list-style: none;
   padding: 0;
   font-size: 15px;
 }
 
-.product .product-info ul li+li {
+.product-details .product-info ul li+li {
   margin-top: 10px;
 }
 
-.product .product-description {
+.product-details .product-description {
   padding-top: 30px;
 }
 
-.product .product-description h2 {
+.product-details .product-description h2 {
   font-size: 26px;
   font-weight: 700;
   margin-bottom: 20px;
 }
 
-.product .product-description p {
+.product-details .product-description p {
   padding: 0;
   color: color-mix(in srgb, var(--default-color), transparent 30%);
 }

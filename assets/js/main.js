@@ -8,9 +8,11 @@
     initScrollToTop();
     initAOS();
     initGLightbox();
-    initSwiper();
     handleHashNavigation();
     initNavMenuScrollspy();
+
+    const header = document.querySelector(".header");
+    document.body.style.paddingTop = `${header.offsetHeight}px`;
 
     if (document.body.id === "index-page") {
       new PureCounter();
@@ -21,7 +23,8 @@
 
       generateProductCards(products);
       generateFilters(categories);
-      generateDropdown(products.map(([_, product]) => product), categories);
+      generateDropdown(products, categories);
+      generateFooterList(categories);
       postData();
 
       const selectedFilter = localStorage.getItem("selectedFilter");
@@ -34,19 +37,98 @@
     }
     else if (document.body.id === "product-page") {
       const productsData = await getProductsData();
-      processProduct(productsData);
 
       const products = Object.entries(productsData.products);
       const categories = productsData.categories;
-      generateDropdown(products.map(([_, product]) => product), categories);
+
+      processProduct(productsData);
+      generateDropdown(products, categories);
+      generateFooterList(categories);
     }
   });
 
+  function generateFooterList(categories) {
+    const footerProducts = document.querySelector(".footer-products ul");
+
+    if (!footerProducts) return;
+    footerProducts.innerHTML = Object.entries(categories)
+      .map(([key, name]) => `
+      <li>
+        <i class="bi bi-chevron-right"></i> 
+        <a href="index.html#products" class="category-link" data-filter=".filter-${key}">${name}</a>
+      </li>
+    `)
+      .join("");
+
+    document.querySelectorAll(".category-link").forEach(link => {
+      link.addEventListener("click", function (event) {
+        event.preventDefault();
+
+        if (document.body.id === "index-page") {
+          selectFilter(this.getAttribute("data-filter"));
+          const productsSection = document.querySelector("#products");
+          if (productsSection) {
+            productsSection.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        } else {
+          localStorage.setItem("selectedFilter", this.getAttribute("data-filter"));
+          window.location.href = `index.html#products`;
+        }
+      });
+    });
+  }
+
   function processProduct(productsData) {
     const urlParams = new URLSearchParams(window.location.search);
-    const pid = urlParams.get("pid");
+    const productId = urlParams.get("pid");
 
-    console.log(productsData.products[pid]);
+    if (!productId) {
+      console.error("Error: Product ID not found in URL.");
+      return;
+    }
+
+    const product = productsData.products[productId];
+    const categoryMap = productsData.categories;
+
+    if (!product) {
+      console.error(`Error: Invalid product ID (${productId}).`);
+      return;
+    }
+
+    const swiperWrapper = document.querySelector(".swiper-wrapper");
+    if (!swiperWrapper) {
+      console.error("Error: Swiper wrapper not found.");
+      return;
+    }
+
+    const productImage = product.image || "assets/img/default-product.jpg"; // Fallback image
+
+    swiperWrapper.innerHTML = `
+        <div class="swiper-slide"><img src="${productImage}" alt="${product.name}"></div>
+        <div class="swiper-slide"><img src="https://media.istockphoto.com/id/163081410/photo/blue-barrels.jpg?s=612x612&w=0&k=20&c=NLXYaBb3onz96RA1sRKUF-CfDNIzHzkDkuGTL1NoFpU=" alt="${product.name}"></div>
+    `;
+
+    initSwiper();
+
+    const productInfoContainer = document.querySelector(".product-info ul");
+
+    if (!productInfoContainer) {
+      console.error("Error: Product info container not found.");
+      return;
+    }
+
+    const productDetails = {
+      "Name": product.name,
+      "Category": categoryMap[product.class],
+      "Formula": product.formula
+    };
+
+    productInfoContainer.innerHTML = Object.entries(productDetails)
+      .map(([key, value]) => `<li><strong>${key}</strong>: ${value}</li>`)
+      .join("");
+
+    const productDescriptionContainer = document.querySelector(".product-description p");
+    productDescriptionContainer.innerHTML = `${product.description}`
   }
 
   async function getProductsData() {
@@ -96,43 +178,37 @@
   }
 
   function generateDropdown(products, categoryNames) {
-    const categories = {};
-
-    for (const [productNumber, { class: category, name }] of Object.entries(products)) {
-      (categories[category] ||= []).push({ name, productNumber });
-    }
-
     const dropdownContainer = document.querySelector("#productDropdown");
     if (!dropdownContainer) return console.error("Error: #productDropdown element not found.");
 
     dropdownContainer.innerHTML = Object.entries(categoryNames)
-      .filter(([category]) => categories[category])
       .map(([category, categoryName]) => `
-            <li class="dropdown">
-                <a href="#products" class="category-link" data-filter=".filter-${category}">
-                    <span>${categoryName}</span> <i class="bi bi-chevron-down toggle-dropdown"></i>
-                </a>
-                <ul>
-                    ${categories[category]
-          .map(({ productNumber, name }) => `<li><a href="product.html?pid=${productNumber}">${name}</a></li>`)
-          .join("")}
-                </ul>
-            </li>
-        `)
+        <li class="dropdown">
+          <a href="index.html#products" class="category-link" data-filter=".filter-${category}">
+            <span>${categoryName}</span> <i class="bi bi-chevron-down toggle-dropdown"></i>
+          </a>
+          <ul id="submenu-${category}"></ul>
+        </li>
+      `)
       .join("");
+
+    products.forEach(([productId, { class: category, name }]) => {
+      const submenu = document.querySelector(`#submenu-${category}`);
+      if (submenu) {
+        submenu.insertAdjacentHTML("beforeend", `<li><a href="product.html?pid=${productId}">${name}</a></li>`);
+      }
+    });
 
     document.querySelectorAll(".category-link").forEach(link => {
       link.addEventListener("click", function (event) {
         event.preventDefault();
+        const filterValue = this.getAttribute("data-filter");
 
         if (document.body.id === "index-page") {
-          selectFilter(this.getAttribute("data-filter"));
-          const productsSection = document.querySelector("#products");
-          if (productsSection) {
-            productsSection.scrollIntoView({ behavior: "smooth", block: "start" });
-          }
+          if (typeof selectFilter === "function") selectFilter(filterValue);
+          document.querySelector("#products")?.scrollIntoView({ behavior: "smooth", block: "start" });
         } else {
-          localStorage.setItem("selectedFilter", this.getAttribute("data-filter"));
+          localStorage.setItem("selectedFilter", filterValue);
           window.location.href = `index.html#products`;
         }
       });

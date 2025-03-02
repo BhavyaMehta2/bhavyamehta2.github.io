@@ -4,48 +4,77 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Product Details - BizLand Bootstrap Template</title>
+  <title>Plastichem Indl Corpn</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
 
-  <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
     rel="stylesheet">
 
-  <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
-  <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
 </head>
 
 <body id="product-page" class="product-page">
 
-  <header id="header" class="header sticky-top">
-
+  <header id="header" class="header fixed-top">
     <div class="topbar d-flex align-items-center">
       <div class="container d-flex justify-content-center justify-content-md-between">
         <div class="contact-info d-flex align-items-center">
-          <i class="bi bi-envelope d-flex align-items-center"><a
-              href="mailto:info@plastichem.in">info@plastichem.in</a></i>
-          <i class="bi bi-phone d-flex align-items-center ms-4"><a href="https://wa.me/+919223432786">+91
-              9223432786</a></i>
+          <i class="bi bi-envelope d-flex align-items-center" onclick="copyToClipboard('info@plastichem.in', event)">
+            <span>info@plastichem.in</span></i>
+          <i class="bi bi-phone d-flex align-items-center ms-4" onclick="copyToClipboard('+919223432786', event)">
+            <span>+91 9223432786</span></i>
+          <script>
+            function copyToClipboard(text, event) {
+              navigator.clipboard.writeText(text).then(() => {
+                showCopiedPopup(event.target);
+              }).catch(err => {
+                console.error("Failed to copy text: ", err);
+              });
+            }
+
+            function copyToClipboard(text, event) {
+              navigator.clipboard.writeText(text).then(() => {
+                showCopiedPopup(event.target);
+              }).catch(err => {
+                console.error("Failed to copy text: ", err);
+              });
+            }
+
+            function showCopiedPopup(element) {
+              const popup = document.createElement("div");
+              popup.innerText = "Copied!";
+              popup.className = "copied-popup";
+
+              element.parentElement.appendChild(popup);
+
+              // popup.style.left = `${element.offsetWidth + 10}px`;
+
+              popup.classList.add("show");
+
+              setTimeout(() => {
+                popup.remove();
+              }, 1000);
+            }
+
+          </script>
         </div>
         <!-- <div class="social-links d-none d-md-flex align-items-center">
-              <a href="https://wa.me/+919223432786" class="whatsapp"><i class="bi bi-whatsapp"></i></a>
-            </div> -->
+            <a href="https://wa.me/+919223432786" class="whatsapp"><i class="bi bi-whatsapp"></i></a>
+          </div> -->
       </div>
     </div>
 
@@ -58,15 +87,14 @@
 
         <nav id="navmenu" class="navmenu">
           <ul>
-            <li><a href="/index.html" class="active">Home</a></li>
-            <li><a href="/index.html#about">About</a></li>
-            <li><a href="/index.html#services">Services</a></li>
+            <li><a href="index.html#hero">Home</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#services">Services</a></li>
             <li class="dropdown">
-              <a href="/index.html#products"><span>Products</span> <i
-                  class="bi bi-chevron-down toggle-dropdown"></i></a>
+              <a href="index.html#products"><span>Products</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
               <ul id="productDropdown"></ul>
             </li>
-            <li><a href="/index.html#contact">Contact</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
           </ul>
           <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
@@ -75,8 +103,6 @@
   </header>
 
   <main class="main">
-
-    <!-- Page Title -->
     <div class="page-title" data-aos="fade">
       <div class="container d-lg-flex justify-content-between align-items-center">
         <h1 class="mb-2 mb-lg-0">Product Details</h1>
@@ -87,18 +113,13 @@
           </ol>
         </nav>
       </div>
-    </div><!-- End Page Title -->
+    </div>
 
-    <!-- Product Details Section -->
-    <section id="product" class="product section">
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-
+    <section id="product-details" class="product-details section">
+      <div class="container" data-aos="fade-up" data-aos-delay="50">
         <div class="row gy-4">
-
           <div class="col-lg-8">
             <div class="product-slider swiper init-swiper">
-
               <script type="application/json" class="swiper-config">
                 {
                   "loop": true,
@@ -116,40 +137,19 @@
               </script>
 
               <div class="swiper-wrapper align-items-center">
-
-                <div class="swiper-slide">
-                  <img src="assets/img/product/app-1.jpg" alt="">
-                </div>
-
-                <div class="swiper-slide">
-                  <img src="assets/img/product/product-1.jpg" alt="">
-                </div>
-
-                <div class="swiper-slide">
-                  <img src="assets/img/product/branding-1.jpg" alt="">
-                </div>
-
-                <div class="swiper-slide">
-                  <img src="assets/img/product/books-1.jpg" alt="">
-                </div>
-
               </div>
               <div class="swiper-pagination"></div>
             </div>
           </div>
 
           <div class="col-lg-4">
-            <div class="product-info" data-aos="fade-up" data-aos-delay="200">
-              <h3>Project information</h3>
+            <div class="product-info" data-aos="fade-up" data-aos-delay="100">
+              <h3>Product information</h3>
               <ul>
-                <li><strong>Category</strong>: Web design</li>
-                <li><strong>Client</strong>: ASU Company</li>
-                <li><strong>Project date</strong>: 01 March, 2020</li>
-                <li><strong>Project URL</strong>: <a href="#">www.example.com</a></li>
               </ul>
             </div>
-            <div class="product-description" data-aos="fade-up" data-aos-delay="300">
-              <h2>Exercitationem repudiandae officiis neque suscipit</h2>
+            <div class="product-description" data-aos="fade-up" data-aos-delay="150">
+              <h2>Product Description</h2>
               <p>
                 Autem ipsum nam porro corporis rerum. Quis eos dolorem eos itaque inventore commodi labore quia quia.
                 Exercitationem repudiandae officiis neque suscipit non officia eaque itaque enim. Voluptatem officia
@@ -160,65 +160,40 @@
           </div>
 
         </div>
-
       </div>
-
     </section><!-- /Product Details Section -->
-
   </main>
 
   <footer id="footer" class="footer">
-
-    <div class="footer-newsletter">
-      <div class="container">
-        <div class="row justify-content-center text-center">
-          <div class="col-lg-6">
-            <h4>Join Our Newsletter</h4>
-            <p>Subscribe to our newsletter and receive the latest news about our products and services!</p>
-            <form action="forms/newsletter.php" method="post" class="email-form">
-              <div class="newsletter-form"><input type="email" name="email"><input type="submit" value="Subscribe">
-              </div>
-              <div class="loading">Loading</div>
-              <div class="error-message"></div>
-              <div class="sent-message">Your subscription request has been sent. Thank you!</div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <div class="container footer-top">
       <div class="row gy-4">
         <div class="col-lg-4 col-md-6 footer-about">
           <a href="index.html" class="d-flex align-items-center">
-            <span class="sitename">BizLand</span>
+            <span class="sitename">Plastichem Indl Corpn</span>
           </a>
           <div class="footer-contact pt-3">
-            <p>A108 Adam Street</p>
-            <p>New York, NY 535022</p>
-            <p class="mt-3"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-            <p><strong>Email:</strong> <span>info@example.com</span></p>
+            <p>410, Centrum, Next To Hotel Satkar Grande</p>
+            <p>S.G.Barve Road, Wagle Estate, Thane (West)</p>
+            <p>Thane - 400604, Maharashtra, India</p>
+            <p class="mt-3"><strong>Phone:</strong> <span>+91 9223432786, +91 8097002786</span></p>
+            <p><strong>Email:</strong> <span>info@plastichem.in</span></p>
           </div>
         </div>
 
         <div class="col-lg-2 col-md-3 footer-links">
           <h4>Useful Links</h4>
           <ul>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">About us</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Services</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Terms of service</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="index.html#hero">Home</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="index.html#about">About</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="index.html#services">Services</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="index.html#products">Products</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="index.html#contact">Contact</a></li>
           </ul>
         </div>
 
-        <div class="col-lg-2 col-md-3 footer-links">
-          <h4>Our Services</h4>
-          <ul>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Web Design</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Web Development</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Product Management</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Marketing</a></li>
-          </ul>
+        <div class="col-lg-2 col-md-3 footer-links footer-products">
+          <h4>Our Products</h4>
+          <ul></ul>
         </div>
 
         <div class="col-lg-4 col-md-12">
@@ -236,24 +211,18 @@
     </div>
 
     <div class="container copyright text-center mt-4">
-      <p>© <span>Copyright</span> <strong class="px-1 sitename">BizLand</strong> <span>All Rights Reserved</span></p>
+      <p>© <span>Copyright</span><strong class="px-1 sitename">Plastichem Indl Corpn</strong><span>All Rights
+          Reserved</span></p>
       <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you've purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> Distributed by <a
-          href=“https://themewagon.com>ThemeWagon
+        Designed with ❤️ by <a href="https://www.linkedin.com/in/BhavyaMxyz/" target="_blank">Bhavya Mehta</a>
       </div>
     </div>
 
   </footer>
 
-  <!-- Scroll Top -->
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
       class="bi bi-arrow-up-short"></i></a>
 
-  <!-- Preloader -->
   <div id="preloader">
     <div></div>
     <div></div>
@@ -261,7 +230,6 @@
     <div></div>
   </div>
 
-  <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
@@ -271,7 +239,6 @@
   <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
 
-  <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
 
 </body>

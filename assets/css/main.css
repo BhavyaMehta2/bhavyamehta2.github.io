@@ -478,7 +478,7 @@ h6 {
   }
 
   .mobile-nav-active .navmenu>ul {
-    dispery: block;
+    display: block;
   }
 }
 
@@ -1732,10 +1732,14 @@ section,
 .product-details .product-slider {
   max-width: 768px;
   max-height: 1024px;
+  overflow: hidden;
 }
 
 .product-details .product-slider img {
   width: 100%;
+  height: auto;
+  max-height: 500px;
+  object-fit: contain;
 }
 
 .product-details .product-slider .swiper-pagination {

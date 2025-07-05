@@ -150,18 +150,29 @@
             </div>
             <div class="product-description" data-aos="fade-up" data-aos-delay="150">
               <h2>Product Description</h2>
-              <p>
-                Autem ipsum nam porro corporis rerum. Quis eos dolorem eos itaque inventore commodi labore quia quia.
-                Exercitationem repudiandae officiis neque suscipit non officia eaque itaque enim. Voluptatem officia
-                accusantium nesciunt est omnis tempora consectetur dignissimos. Sequi nulla at esse enim cum deserunt
-                eius.
-              </p>
+              <p></p>
             </div>
           </div>
-
         </div>
       </div>
     </section><!-- /Product Details Section -->
+
+    <section id="product-specs" class="product-specs section" style="
+      background-color: color-mix(in srgb, var(--accent-color), transparent 96%);
+      padding: 50px 0;
+      color: var(--default-color);
+      font-size: 14px;
+      padding-bottom: 50px;
+      position: relative;">
+      <div style="display: flex; justify-content: center; align-items: center; width: 100%;">
+        <button id="downloadPDF" class="btn btn-primary mt-3"
+          style="background-color: var(--accent-color); border-color: var(--accent-color); display: flex; align-items: center; gap: 8px;">
+          <i class="bi bi-download"></i> Specifications PDF
+        </button>
+      </div>
+      <div class="swiper-slide" id="pdfSlide"
+        style="width: 80%; margin: 20px auto; display: flex; justify-content: center; align-items: center;"></div>
+    </section>
   </main>
 
   <footer id="footer" class="footer">
@@ -230,16 +241,18 @@
     <div></div>
   </div>
 
+  <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
+  <script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/5.3.31/pdf.min.mjs"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
 
-  <script src="assets/js/main.js"></script>
+  <script type="module" src="assets/js/main.js"></script>
 
 </body>
 

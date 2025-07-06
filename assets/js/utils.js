@@ -1,7 +1,52 @@
-export function preparePage() {
+import { getProducts, getCategories } from './db.js';
+
+export function toSubscript(str) {
+    const subscriptMap = {
+        '0': '₀',
+        '1': '₁',
+        '2': '₂',
+        '3': '₃',
+        '4': '₄',
+        '5': '₅',
+        '6': '₆',
+        '7': '₇',
+        '8': '₈',
+        '9': '₉'
+    };
+
+    return str.replace(/\d/g, digit => subscriptMap[digit]);
+}
+
+export function selectFilter(filterValue) {
+    const filterContainer = document.querySelector(".isotope-filters");
+    const filterBtn = filterContainer.querySelector(`[data-filter="${filterValue}"]`);
+
+    if (!filterBtn) return;
+
+    filterContainer.querySelector(".filter-active")?.classList.remove("filter-active");
+    filterBtn.classList.add("filter-active");
+
+    const isotopeLayout = document.querySelector(".isotope-layout");
+    if (isotopeLayout) {
+        const isotopeContainer = isotopeLayout.querySelector(".isotope-container");
+        if (isotopeContainer && isotopeContainer.isotope) {
+            isotopeContainer.isotope.arrange({ filter: filterValue });
+        }
+    }
+}
+
+export async function preparePage() {
+    const productsData = await getProducts();
+    const categoriesData = await getCategories();
+    const products = Object.entries(productsData);
+    const categories = Object.fromEntries(
+        categoriesData.map(item => [item.class, item.name])
+    );
+
+    generateDropdown(products, categories);
+    generateFooterList(categories);
     initScrollEffects();
     initMobileNav();
-    initPreloader();
     initScrollToTop();
     initAOS();
     initGLightbox();
@@ -10,19 +55,48 @@ export function preparePage() {
 
     const header = document.querySelector(".header");
     document.body.style.paddingTop = `${header.offsetHeight}px`;
+
+    return [products, categories]
 }
 
-function initScrollEffects() {
-    const body = document.body;
-    const header = document.querySelector("#header");
+function generateDropdown(products, categoryNames) {
+    const dropdownContainer = document.querySelector("#productDropdown");
+    if (!dropdownContainer) return console.error("Error: #productDropdown element not found.");
 
-    function toggleScrolled() {
-        if (!header.classList.contains("scroll-up-sticky") && !header.classList.contains("sticky-top") && !header.classList.contains("fixed-top")) return;
-        body.classList.toggle("scrolled", window.scrollY > 100);
-    }
+    dropdownContainer.innerHTML = Object.entries(categoryNames)
+        .map(([category, categoryName]) => `
+        <li class="dropdown">
+          <a>
+            <span href="index.html#products" class="category-link" data-filter=".filter-${category}">
+            ${categoryName}
+            </span> <i class="bi bi-chevron-down toggle-dropdown"></i>
+          </a>
+          <ul id="submenu-${category}"></ul>
+        </li>
+      `)
+        .join("");
 
-    window.addEventListener("scroll", toggleScrolled);
-    toggleScrolled();
+    products.forEach(([productID, { class: category, name }]) => {
+        const submenu = document.querySelector(`#submenu-${category}`);
+        if (submenu) {
+            submenu.insertAdjacentHTML("beforeend", `<li><a href="product.html?pid=${productID}">${name}</a></li>`);
+        }
+    });
+
+    document.querySelectorAll(".category-link").forEach(link => {
+        link.addEventListener("click", function (event) {
+            event.preventDefault();
+            const filterValue = this.getAttribute("data-filter");
+
+            if (document.body.id === "index-page") {
+                if (typeof selectFilter === "function") selectFilter(filterValue);
+                document.querySelector("#products")?.scrollIntoView({ behavior: "smooth", block: "start" });
+            } else {
+                localStorage.setItem("selectedFilter", filterValue);
+                window.location.href = `index.html#products`;
+            }
+        });
+    });
 }
 
 function initMobileNav() {
@@ -40,7 +114,7 @@ function initMobileNav() {
         if (document.body.classList.contains("mobile-nav-active")) toggleMobileNav();
     }));
 
-    document.querySelectorAll(".navmenu .toggle-dropdown").forEach(toggle => {
+    document.querySelectorAll(".toggle-dropdown").forEach(toggle => {
         toggle.addEventListener("click", (e) => {
             e.preventDefault();
             toggle.parentNode.classList.toggle("active");
@@ -50,9 +124,53 @@ function initMobileNav() {
     });
 }
 
-function initPreloader() {
+function generateFooterList(categories) {
+    const footerProducts = document.querySelector(".footer-products ul");
+
+    if (!footerProducts) return;
+    footerProducts.innerHTML = Object.entries(categories)
+        .map(([key, name]) => `
+      <li>
+        <i class="bi bi-chevron-right"></i> 
+        <a href="index.html#products" class="category-link" data-filter=".filter-${key}">${name}</a>
+      </li>
+    `)
+        .join("");
+
+    document.querySelectorAll(".category-link").forEach(link => {
+        link.addEventListener("click", function (event) {
+            event.preventDefault();
+
+            if (document.body.id === "index-page") {
+                selectFilter(this.getAttribute("data-filter"));
+                const productsSection = document.querySelector("#products");
+                if (productsSection) {
+                    productsSection.scrollIntoView({ behavior: "smooth", block: "start" });
+                }
+            } else {
+                localStorage.setItem("selectedFilter", this.getAttribute("data-filter"));
+                window.location.href = `index.html#products`;
+            }
+        });
+    });
+}
+
+function initScrollEffects() {
+    const body = document.body;
+    const header = document.querySelector("#header");
+
+    function toggleScrolled() {
+        if (!header.classList.contains("scroll-up-sticky") && !header.classList.contains("sticky-top") && !header.classList.contains("fixed-top")) return;
+        body.classList.toggle("scrolled", window.scrollY > 100);
+    }
+
+    window.addEventListener("scroll", toggleScrolled);
+    toggleScrolled();
+}
+
+export function initPreloader() {
     const preloader = document.querySelector("#preloader");
-    if (preloader) window.addEventListener("load", () => preloader.remove());
+    preloader.remove();
 }
 
 function initScrollToTop() {

@@ -28,7 +28,6 @@
 </head>
 
 <body id="index-page" class="index-page">
-
   <header id="header" class="header fixed-top">
     <div class="topbar d-flex align-items-center">
       <div class="container d-flex justify-content-center justify-content-md-between">
@@ -40,28 +39,24 @@
           <script>
             function copyToClipboard(text, event) {
               navigator.clipboard.writeText(text).then(() => {
-                showCopiedPopup(event.target);
+                showCopiedPopup(event);
               }).catch(err => {
                 console.error("Failed to copy text: ", err);
               });
             }
 
-            function copyToClipboard(text, event) {
-              navigator.clipboard.writeText(text).then(() => {
-                showCopiedPopup(event.target);
-              }).catch(err => {
-                console.error("Failed to copy text: ", err);
-              });
-            }
-
-            function showCopiedPopup(element) {
+            function showCopiedPopup(event) {
               const popup = document.createElement("div");
               popup.innerText = "Copied!";
               popup.className = "copied-popup";
 
-              element.parentElement.appendChild(popup);
+              popup.style.position = "fixed";
+              popup.style.left = `${event.clientX}px`;
+              popup.style.top = `${event.clientY}px`;
+              popup.style.transform = "translate(-50%, -50%)";
+              popup.style.zIndex = 9999;
 
-              // popup.style.left = `${element.offsetWidth + 10}px`;
+              document.body.appendChild(popup);
 
               popup.classList.add("show");
 
@@ -91,7 +86,7 @@
             <li><a href="index.html#about">About</a></li>
             <li><a href="index.html#services">Services</a></li>
             <li class="dropdown">
-              <a href="index.html#products"><span>Products</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+              <a><span href="index.html#products">Products</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
               <ul id="productDropdown"></ul>
             </li>
             <li><a href="index.html#contact">Contact</a></li>
@@ -622,10 +617,12 @@
       class="bi bi-arrow-up-short"></i></a>
 
   <div id="preloader">
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
+    <div class="preloader-dots">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
   </div>
 
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

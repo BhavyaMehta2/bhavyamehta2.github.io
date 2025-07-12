@@ -2,52 +2,74 @@ import { toSubscript, selectFilter } from "./utils.js";
 import { getImageURL } from './db.js';
 
 export function generateProductCards(products) {
-    const container = document.querySelector(".isotope-container");
-    if (!container) return;
+    const container = document.querySelector('.bd-grid');
 
     products.forEach(([productNumber, product]) => {
         container.insertAdjacentHTML("beforeend", `
-            <a href="product.html?pid=${productNumber}" class="col-lg-4 col-md-6 product-item isotope-item filter-${product.class}">
-              <img src="${getImageURL(product.id)}" class="img-fluid ${product.class}" alt="">
-              <div class="product-info">
-                <h4>${product.name}</h4>
-                <p>${toSubscript(product.formula)}</p>
+        <article class="card filter-${product.class}">
+          <a href="product.html?pid=${productNumber}">
+            <div class="card__img">
+              <img src="${getImageURL(product.id)}" alt="${product.class}">
+            </div>
+            <div class="card__name">
+              <p>${product.class}</p>
+            </div>
+            <div class="card__precis">
+              <div>
+                <span class="card__preci card__preci--before">${product.name}</span>
+                <span class="card__preci card__preci--now">${toSubscript(product.formula)}</span>
               </div>
-            </a>
-        `);
+            </div>
+          </a>
+        </article>
+      `);
     });
 
     initializeFilters();
 }
 
 export function initializeFilters() {
-    document.querySelectorAll(".isotope-layout").forEach(isotopeItem => {
-        const layout = isotopeItem.getAttribute("data-layout") || "masonry";
-        const filter = isotopeItem.getAttribute("data-default-filter") || "*";
-        const sort = isotopeItem.getAttribute("data-sort") || "original-order";
+    const filterButtons = document.querySelectorAll(".product-filters li");
+    const productCards = document.querySelectorAll(".bd-grid .card");
 
-        imagesLoaded(isotopeItem.querySelector(".isotope-container"), function () {
-            const isotopeInstance = new Isotope(isotopeItem.querySelector(".isotope-container"), {
-                itemSelector: ".isotope-item",
-                layoutMode: layout,
-                filter: filter,
-                sortBy: sort
+    filterButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            document.querySelector(".product-filters .filter-active")?.classList.remove("filter-active");
+            this.classList.add("filter-active");
+
+            const filter = this.getAttribute("data-filter");
+
+            productCards.forEach(card => {
+                const matches = filter === "*" || card.classList.contains(filter.slice(1));
+
+                if (matches) {
+                    // Bring card back to flow first
+                    card.classList.remove("hidden");
+
+                    // Force reflow to restart transition
+                    void card.offsetWidth;
+
+                    // Start transition in next frame
+                    requestAnimationFrame(() => {
+                        card.classList.remove("hiding");
+                    });
+
+                } else {
+                    if (!card.classList.contains("hiding")) {
+                        // Start transition
+                        card.classList.add("hiding");
+
+                        // Wait for transition to finish, then remove from layout
+                        const handler = (e) => {
+                            if (e.propertyName === "opacity") {
+                                card.classList.add("hidden");
+                                card.removeEventListener("transitionend", handler);
+                            }
+                        };
+                        card.addEventListener("transitionend", handler);
+                    }
+                }
             });
-
-            setTimeout(() => {
-                isotopeInstance.reloadItems();
-                isotopeInstance.arrange();
-            }, 200);
-
-            isotopeItem.querySelectorAll(".isotope-filters li").forEach(filterBtn => {
-                filterBtn.addEventListener("click", function () {
-                    isotopeItem.querySelector(".isotope-filters .filter-active").classList.remove("filter-active");
-                    this.classList.add("filter-active");
-                    isotopeInstance.arrange({ filter: this.getAttribute("data-filter") });
-                });
-            });
-
-            isotopeItem.querySelector(".isotope-container").isotope = isotopeInstance;
         });
     });
 }
@@ -57,19 +79,42 @@ export function generateFilters(categories) {
     if (!filterContainer) return;
 
     filterContainer.innerHTML = `<li data-filter="*" class="filter-active filter-all">All</li>`;
-
     Object.entries(categories).forEach(([key, name]) => {
-        filterContainer.insertAdjacentHTML("beforeend", `
-            <li data-filter=".filter-${key}" class="filter-${key}">${name}</li>
-        `);
+        const li = document.createElement("li");
+        li.className = `filter-${key}`;
+        li.setAttribute("data-filter", `.filter-${key}`);
+        li.textContent = name;
+
+        li.addEventListener("click", handleFilterClick);
+
+        filterContainer.appendChild(li);
+    });
+
+    filterContainer.querySelector('[data-filter="*"]')?.addEventListener("click", handleFilterClick);
+}
+function handleFilterClick(event) {
+    const filter = this.getAttribute("data-filter");
+    const productCards = document.querySelectorAll(".bd-grid .card");
+
+    document.querySelector(".product-filters .filter-active")?.classList.remove("filter-active");
+    this.classList.add("filter-active");
+
+    productCards.forEach(card => {
+        if (filter === "*" || card.classList.contains(filter.slice(1))) {
+            card.classList.remove("hidden");
+        } else {
+            card.classList.add("hidden");
+        }
     });
 }
+
 
 export function setSelectedFilter() {
     const selectedFilter = localStorage.getItem("selectedFilter");
     if (selectedFilter) {
         setTimeout(() => {
-            selectFilter(selectedFilter);
+            const filterBtn = document.querySelector(`.product-filters [data-filter="${selectedFilter}"]`);
+            filterBtn?.click();
             localStorage.removeItem("selectedFilter");
         }, 200);
     }

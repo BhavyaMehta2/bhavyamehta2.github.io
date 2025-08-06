@@ -42,3 +42,9 @@ export async function getProductSpecifications(pid) {
 export function getImageURL(id) {
     return supabaseUrl + bucketUrl + id + '.png';
 }
+
+export async function submitFormData(formData) {
+    return await supabase
+        .from('queries')
+        .insert(formData)
+}

@@ -1,5 +1,5 @@
 import { toSubscript, selectFilter } from "./utils.js";
-import { getImageURL } from './db.js';
+import { getImageURL, submitFormData } from './db.js';
 
 export function generateProductCards(products) {
     const container = document.querySelector('.bd-grid');
@@ -136,9 +136,7 @@ export async function postQuery() {
         };
 
         try {
-            const { error } = await supabase
-                .from('queries')
-                .insert(formData)
+            const { error } = submitFormData(formData)
 
             document.querySelector(".loading").style.display = "none";
             document.querySelector(".sent-message").style.display = "block";

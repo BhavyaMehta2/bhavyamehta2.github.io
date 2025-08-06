@@ -1547,7 +1547,7 @@ section,
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
-  border-radius: 1rem;
+  border-radius: 0.2rem;
   overflow: hidden;
   max-width: 400px;
   aspect-ratio: 4 / 3;

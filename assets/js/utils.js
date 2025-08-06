@@ -66,8 +66,8 @@ function generateDropdown(products, categoryNames) {
     dropdownContainer.innerHTML = Object.entries(categoryNames)
         .map(([category, categoryName]) => `
         <li class="dropdown">
-          <a>
-            <span href="index.html#products" class="category-link" data-filter=".filter-${category}">
+          <a href="index.html#products" class="category-link" data-filter=".filter-${category}">
+            <span>
             ${categoryName}
             </span> <i class="bi bi-chevron-down toggle-dropdown"></i>
           </a>
@@ -89,7 +89,8 @@ function generateDropdown(products, categoryNames) {
             const filterValue = this.getAttribute("data-filter");
 
             if (document.body.id === "index-page") {
-                if (typeof selectFilter === "function") selectFilter(filterValue);
+                const filterBtn = document.querySelector(`.product-filters [data-filter="${filterValue}"]`);
+                filterBtn?.click();
                 document.querySelector("#products")?.scrollIntoView({ behavior: "smooth", block: "start" });
             } else {
                 localStorage.setItem("selectedFilter", filterValue);
@@ -142,7 +143,8 @@ function generateFooterList(categories) {
             event.preventDefault();
 
             if (document.body.id === "index-page") {
-                selectFilter(this.getAttribute("data-filter"));
+                const filterBtn = document.querySelector(`.product-filters [data-filter="${this.getAttribute("data-filter")}"]`);
+                filterBtn?.click();
                 const productsSection = document.querySelector("#products");
                 if (productsSection) {
                     productsSection.scrollIntoView({ behavior: "smooth", block: "start" });

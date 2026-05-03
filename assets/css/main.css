@@ -1592,9 +1592,10 @@ section,
   writing-mode: vertical-rl;
   transform: rotate(180deg);
   text-align: center;
-  background-color: var(--accent-color);
-  color: #fff;
   transition: 0.5s;
+  text-transform: capitalize;
+  color: var(--accent-color);
+  font-weight: 500;
 }
 
 .card__precis {
@@ -1621,6 +1622,7 @@ section,
 
 .card__preci--now {
   font-size: var(--smaller-font-size);
+  color: var(--nav-dropdown-hover-color);
 }
 
 .card:hover {
@@ -1640,27 +1642,27 @@ section,
   padding: 0 1.5rem;
 }
 
-.card.filter-alcohol {
+.card.filter-alcohol .card__name {
   background-color: var(--alcohol);
 }
 
-.card.filter-glycol {
+.card.filter-glycol .card__name {
   background-color: var(--glycol);
 }
 
-.card.filter-ester {
+.card.filter-ester .card__name {
   background-color: var(--ester);
 }
 
-.card.filter-ketone {
+.card.filter-ketone .card__name {
   background-color: var(--ketone);
 }
 
-.card.filter-hydrocarbon {
+.card.filter-hydrocarbon .card__name {
   background-color: var(--hydrocarbon);
 }
 
-.card.filter-other {
+.card.filter-other .card__name {
   background-color: var(--other)
 }
 
@@ -1916,9 +1918,7 @@ section,
   color: color-mix(in srgb, var(--default-color), transparent 30%);
 }
 
-/*--------------------------------------------------------------
-# Starter Section Section
---------------------------------------------------------------*/
-/* .starter-section {
-  Add your styles here
-} */
+.product-slider .swiper-slide {
+  background-color: rgba(0, 0, 0, 0.05);
+  /* 30% black underlay */
+}

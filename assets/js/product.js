@@ -154,11 +154,15 @@ export async function generatePDF(productDetails) {
 
             renderPDFAsImage(pdfBlob);
 
-            document.getElementById("downloadPDF").addEventListener("click", async function () {
+            document.getElementById("pdfSlide").addEventListener("click", async function () {
                 try {
-                    doc.save(productDetails["Name"].replace(" ", "_") + "_Specification.pdf");
+                    const pdfBlob = doc.output("blob");
+                    const url = URL.createObjectURL(pdfBlob);
+
+                    window.open(url, "_blank");
+
                 } catch (error) {
-                    console.error("Error fetching specifications:", error);
+                    console.error("Error generating PDF:", error);
                     alert("Failed to generate PDF. Please try again.");
                 }
             });
